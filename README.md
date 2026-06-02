@@ -12,7 +12,73 @@ The project does **not** claim that firms intentionally optimized for GEO. It in
 
 ---
 
-## 1. Research Question
+## 1. Key Preliminary Results
+
+The current benchmark uses a direct all-original baseline:
+
+```text
+code/data/results/shopping_answers/baseline/baseline.txt
+```
+
+The baseline contains shopping-answer output generated from the five older original product pages. Each comparison file then replaces **one product page at a time** with either its 2026 current version or its GEO-style rewrite. The product-level effect is measured as:
+
+```text
+replacement effect for product p
+= metric(p in one-product replacement run) - metric(p in all-original baseline)
+```
+
+### 1.1 Comparison 01: 2023/2024 Original Baseline vs 2026 Current
+
+Purpose:
+
+> Check how much the actual product page changed over time.
+
+<div style="overflow-x:auto">
+
+| Product | Direction label | Current-page advantage score | Δ rank score proxy | Δ citation rate | Δ first citation score | Δ top-1 cited share | Δ feature coverage | Δ PAIS | Note |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| **Monos** | `current_2026_stronger` | **0.163** | 0.20 | 0.20 | 0.2167 | 0.20 | -0.0400 | 0.0382 | 2026 current text increased answer prominence |
+| **BÉIS** | `current_2026_stronger` | **0.132** | 0.12 | 0.40 | 0.0667 | 0.00 | 0.0267 | 0.0587 | 2026 current text increased citation and answer visibility |
+| **INUSA** | `similar_or_small_change` | -0.007 | -0.04 | 0.00 | 0.0167 | 0.00 | 0.0000 | 0.0013 | Little observed change |
+| **Travelpro** | `similar_or_small_change` | -0.014 | -0.04 | 0.00 | 0.0000 | 0.00 | 0.0000 | -0.0360 | Little observed change; older page may already have been answer-ready |
+| **Delsey** | `baseline_2023_2024_stronger` | -0.082 | -0.08 | 0.00 | -0.1333 | -0.20 | 0.0000 | -0.0525 | Older page produced stronger answer behavior |
+
+</div>
+
+**Working note.** The 2026 current-page replacement did not uniformly improve all products. Monos and BÉIS gained answer prominence, INUSA and Travelpro were mostly stable, and Delsey declined relative to the all-original baseline.
+
+### 1.2 Comparison 02: 2023/2024 Original Baseline vs GEO-Style Rewrite
+
+Purpose:
+
+> Check how a GEO-style rewrite changes the older page.
+
+<div style="overflow-x:auto">
+
+| Product | Direction label | GEO-rewrite advantage score | Δ rank score proxy | Δ citation rate | Δ first citation score | Δ top-1 cited share | Δ feature coverage | Δ PAIS | Note |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| **Monos** | `geo_rewrite_stronger` | **0.137** | 0.12 | 0.40 | 0.0733 | 0.00 | 0.0667 | 0.0600 | GEO rewrite improved answer prominence |
+| **BÉIS** | `geo_rewrite_stronger` | **0.121** | 0.16 | 0.20 | 0.1333 | 0.00 | 0.0933 | 0.0450 | GEO rewrite improved answer visibility |
+| **Travelpro** | `geo_rewrite_stronger` | **0.102** | 0.12 | 0.20 | 0.1000 | 0.00 | 0.1067 | 0.0130 | GEO rewrite improved answer behavior |
+| **INUSA** | `similar_or_small_change` | -0.006 | -0.04 | 0.00 | 0.0167 | 0.00 | 0.0000 | 0.0018 | Little observed change |
+| **Delsey** | `baseline_2023_2024_stronger` | -0.467 | -0.64 | -0.80 | -0.3833 | -0.20 | -0.1867 | -0.2144 | GEO rewrite substantially reduced answer prominence |
+
+</div>
+
+**Working note.** The GEO-style rewrite improved Monos, BÉIS, and Travelpro, had little observed effect on INUSA, and reduced Delsey’s answer prominence relative to the all-original baseline.
+
+### 1.3 Early Pattern
+
+The current results suggest **mixed product-level effects**:
+
+- 2026 current pages do not uniformly outperform older pages.
+- GEO-style rewrites do not uniformly outperform older pages.
+- Product pages that already contain direct, concrete, answer-ready information may not benefit from rewriting.
+- The current analysis uses only **five shopping queries**, so results should be treated as preliminary.
+
+---
+
+## 2. Research Question
 
 **Main question**
 
@@ -24,14 +90,14 @@ This benchmark asks a shopping assistant to answer realistic consumer questions 
 
 ---
 
-## 2. Benchmark Overview
+## 3. Benchmark Overview
 
 | Component | Description |
 |---|---|
 | Product category | Carry-on suitcases |
 | Product count | 5 products |
-| Historical period | 2023/2024 archived pages |
-| Current period | 2026 current pages |
+| Historical source | Wayback Machine snapshots from 2023/2024 |
+| Current source | Official 2026 product pages |
 | Synthetic condition | GEO-style rewrite of each older page |
 | Main unit of analysis | Generated shopping answers with product citations |
 | Main outcome | Change in product citation and recommendation behavior |
@@ -40,21 +106,25 @@ This benchmark asks a shopping assistant to answer realistic consumer questions 
 
 ---
 
-## 3. Selected 5-Product Benchmark Group
+## 4. Product Sample
 
 The sample uses comparable hardshell or hardshell-centered carry-on suitcases for short-trip and overhead-bin travel. The goal is not strict airline-size compliance, but a comparable product group with similar luggage category, feature language, and enough visible text for website adaptation analysis.
 
-| Product | Archive date | Benchmark role | Product-level notes |
-|---|---:|---|---|
-| **Monos Carry-On** | 2023-03-19 | Central modern DTC hardshell carry-on baseline | 22 × 14 × 9 in; 7.01 lb; 39.9 L; 2–5 day trip language; polycarbonate shell; TSA lock; 360-degree spinner wheels; compression pad; laundry and shoe bags |
-| **BÉIS The Carry-On Roller** | 2024-03-26 | Marketing-rich DTC comparison | 22.8 × 15.7 × 9.8 in exterior; 8.36 lb; 49–61 L; expandable capacity; TSA lock; weight indicator; compression straps; organization pouches |
-| **Travelpro Platinum Elite Carry-On Hardside Spinner** | 2024-04-14 | Traditional luggage-brand durability / engineering comparison | 23 × 14.5 × 9.5 in overall; 8.2 lb; 46 L; polycarbonate shell; aluminum corner guards; PrecisionGlide spinner system; TSA lock; USB-A/C ports; 2-inch expansion |
-| **Delsey Chatelet Air 2.0 Carry-On Plus Spinner** | 2024-07-13 | Premium/traditional luggage-brand comparison | Carry-On Plus; about 22.75 × 15 × 10 in; 44 L; 3–5 day use; SECURITECH zipper; TSA lock; corner protection; USB port; 10-year warranty |
-| **INUSA Ally Hardside 20-Inch Carry-On Spinner** | 2023-09-29 | Budget-to-mid boundary case | 20 in; 5.9 lb; 37.72 L; PC/ABS shell; 360-degree wheels; TSA/Travel Sentry lock; telescopic handle; 10-year warranty language in current page |
+<div style="overflow-x:auto">
+
+| Product | Current source | Archived source | Archive date | Benchmark role | Product-level notes |
+|---|---|---|---:|---|---|
+| **Monos Carry-On** | Current official page | Wayback Machine snapshot | 2023-03-19 | Central modern DTC hardshell carry-on baseline | 22 × 14 × 9 in; 7.01 lb; 39.9 L; 2–5 day trip language; polycarbonate shell; TSA lock; 360-degree spinner wheels; compression pad; laundry and shoe bags |
+| **BÉIS The Carry-On Roller** | Current official page | Wayback Machine snapshot | 2024-03-26 | Marketing-rich DTC comparison | 22.8 × 15.7 × 9.8 in exterior; 8.36 lb; 49–61 L; expandable capacity; TSA lock; weight indicator; compression straps; organization pouches |
+| **Travelpro Platinum Elite Carry-On Hardside Spinner** | Current official page | Wayback Machine snapshot | 2024-04-14 | Traditional luggage-brand durability / engineering comparison | 23 × 14.5 × 9.5 in overall; 8.2 lb; 46 L; polycarbonate shell; aluminum corner guards; PrecisionGlide spinner system; TSA lock; USB-A/C ports; 2-inch expansion |
+| **Delsey Chatelet Air 2.0 Carry-On Plus Spinner** | Current official page | Wayback Machine snapshot | 2024-07-13 | Premium/traditional luggage-brand comparison | Carry-On Plus; about 22.75 × 15 × 10 in; 44 L; 3–5 day use; SECURITECH zipper; TSA lock; corner protection; USB port; 10-year warranty |
+| **INUSA Ally Hardside 20-Inch Carry-On Spinner** | Current official page | Wayback Machine snapshot | 2023-09-29 | Budget-to-mid boundary case | 20 in; 5.9 lb; 37.72 L; PC/ABS shell; 360-degree wheels; TSA/Travel Sentry lock; telescopic handle; 10-year warranty language in current page |
+
+</div>
 
 ---
 
-## 4. Benchmark Restrictions
+## 5. Benchmark Restrictions
 
 | Criterion | Restriction |
 |---|---|
@@ -68,7 +138,7 @@ The sample uses comparable hardshell or hardshell-centered carry-on suitcases fo
 
 ---
 
-## 5. Repository Structure
+## 6. Repository Structure
 
 ```text
 code/
@@ -95,8 +165,8 @@ Important paths:
 
 | Path | Purpose |
 |---|---|
-| [`code/data/raw_2023_2024/`](code/data/raw_2023_2024/) | Raw archived visible text |
-| [`code/data/raw_2026/`](code/data/raw_2026/) | Raw current visible text |
+| [`code/data/raw_2023_2024/`](code/data/raw_2023_2024/) | Raw archived visible text from Wayback Machine snapshots |
+| [`code/data/raw_2026/`](code/data/raw_2026/) | Raw current visible text from official product pages |
 | [`code/data/filtered/old/`](code/data/filtered/old/) | Lightly filtered 2023/2024 product text |
 | [`code/data/filtered/current/`](code/data/filtered/current/) | Lightly filtered 2026 product text |
 | [`code/data/geo_rewrites/`](code/data/geo_rewrites/) | GEO-style rewrites of older product pages |
@@ -108,7 +178,26 @@ Important paths:
 
 ---
 
-## 6. Text Processing Strategy
+## 7. Source Collection and Wayback Machine Method
+
+For each product, two webpage text sources were collected:
+
+1. **Archived page** from the Wayback Machine, using a usable 2023 or 2024 snapshot.
+2. **Current page** from the official brand website, observed on June 1, 2026.
+
+Collection rules:
+
+- Use the same product or the closest continuous product page when possible.
+- Prefer snapshots with visible product description, feature highlights, specifications, warranty/trust language, and travel-use language.
+- Exclude candidates with no usable Wayback snapshot, insufficient visible archived text, or nearly identical archived/current text for the intended adaptation comparison.
+- Keep raw visible text in `raw_2023_2024/` and `raw_2026/`.
+- Create lightly filtered product-content text for the main analysis.
+
+The benchmark uses Wayback Machine snapshots only as historical webpage evidence. It does not infer company strategy or intent from the existence of page changes.
+
+---
+
+## 8. Text Processing Strategy
 
 Raw product-page text often contains page noise such as navigation, cart text, repeated titles, image modal text, footer menus, reviews, and recommendation modules. The main benchmark therefore uses **lightly filtered product-content text**.
 
@@ -120,7 +209,7 @@ The filtering step is intended to reduce webpage noise while avoiding rewriting 
 
 ---
 
-## 7. GEO-Style Rewrite Strategy
+## 9. GEO-Style Rewrite Strategy
 
 The GEO-style rewrite condition is a controlled hypothetical direction. Each older product page is rewritten using the same prompt.
 
@@ -143,7 +232,7 @@ Prompt files:
 
 ---
 
-## 8. Shopping-Answer Evaluation Design
+## 10. Shopping-Answer Evaluation Design
 
 The benchmark currently uses five consumer-style carry-on questions.
 
@@ -163,21 +252,19 @@ Important note:
 
 ---
 
-## 9. Experimental Conditions
+## 11. Experimental Conditions
 
-### 9.1 Baseline
+### 11.1 Baseline
 
 | Condition | Input setup | Output file |
 |---|---|---|
 | All-original baseline | All five products use 2023/2024 original filtered text | [`baseline.txt`](code/data/results/shopping_answers/baseline/baseline.txt) |
 
-### 9.2 Comparison 01: Original vs Current
+### 11.2 Comparison 01: Original vs Current
 
 Purpose:
 
 > Check how much the actual product page changed over time.
-
-Design:
 
 | File pattern | Meaning |
 |---|---|
@@ -194,13 +281,11 @@ current effect for product p
 = metric(p in one-product-current run) - metric(p in all-original baseline)
 ```
 
-### 9.3 Comparison 02: Original vs GEO-Style Rewrite
+### 11.3 Comparison 02: Original vs GEO-Style Rewrite
 
 Purpose:
 
 > Check how a GEO-style rewrite changes the older page.
-
-Design:
 
 | File pattern | Meaning |
 |---|---|
@@ -217,7 +302,7 @@ GEO rewrite effect for product p
 = metric(p in one-product-GEO run) - metric(p in all-original baseline)
 ```
 
-### 9.4 Comparison 03: Current vs GEO-Style Rewrite
+### 11.4 Comparison 03: Current vs GEO-Style Rewrite
 
 Purpose:
 
@@ -227,9 +312,11 @@ This comparison is the main detection test and can be added after Comparisons 01
 
 ---
 
-## 10. Metrics
+## 12. Metrics
 
 The notebooks convert generated shopping answers into product-level metrics.
+
+<div style="overflow-x:auto">
 
 | Metric | Definition | Interpretation |
 |---|---|---|
@@ -241,6 +328,8 @@ The notebooks convert generated shopping answers into product-level metrics.
 | `feature_coverage` | Share of predefined carry-on feature categories used in cited sentences | How much product-specific evidence appears in answers |
 | `PAIS` | Product Answer Influence Score combining reference count, citation position, feature coverage, TF-IDF similarity, and n-gram overlap | Descriptive proxy for answer-level use of product text |
 | `advantage_score` | Weighted composite of delta metrics | Summary of whether replacement text improved answer behavior |
+
+</div>
 
 Composite score:
 
@@ -258,7 +347,7 @@ This score is descriptive, not causal. It summarizes observed answer-behavior mo
 
 ---
 
-## 11. Notebooks
+## 13. Notebooks
 
 | Notebook | Purpose | Main output |
 |---|---|---|
@@ -267,31 +356,7 @@ This score is descriptive, not causal. It summarizes observed answer-behavior mo
 
 ---
 
-## 12. Preliminary Results
-
-### 12.1 Comparison 01: 2023/2024 Original Baseline vs 2026 Current
-
-| Product | Direction label | Advantage score | Note |
-|---|---|---:|---|
-| Monos | `current_2026_stronger` | 0.163 | 2026 current text increased answer prominence |
-| BÉIS | `current_2026_stronger` | 0.132 | 2026 current text increased citation and answer visibility |
-| INUSA | `similar_or_small_change` | -0.007 | Little observed change |
-| Travelpro | `similar_or_small_change` | -0.014 | Little observed change; older page may already have been answer-ready |
-| Delsey | `baseline_2023_2024_stronger` | -0.082 | Older page produced stronger answer behavior |
-
-### 12.2 Comparison 02: 2023/2024 Original Baseline vs GEO-Style Rewrite
-
-| Product | Direction label | Advantage score | Note |
-|---|---|---:|---|
-| Monos | `geo_rewrite_stronger` | 0.137 | GEO rewrite improved answer prominence |
-| BÉIS | `geo_rewrite_stronger` | 0.121 | GEO rewrite improved answer visibility |
-| Travelpro | `geo_rewrite_stronger` | 0.102 | GEO rewrite improved answer behavior |
-| INUSA | `similar_or_small_change` | -0.006 | Little observed change |
-| Delsey | `baseline_2023_2024_stronger` | -0.467 | GEO rewrite substantially reduced answer prominence |
-
----
-
-## 13. Notes
+## 14. Notes
 
 These preliminary results suggest several working observations.
 
@@ -316,7 +381,7 @@ Suggested wording:
 
 ---
 
-## 14. How to Run
+## 15. How to Run
 
 ### Step 1: Verify answer files
 
@@ -370,7 +435,7 @@ This helps evaluate whether observed 2026 changes resemble the hypothetical GEO 
 
 ---
 
-## 15. Limitations
+## 16. Limitations
 
 | Limitation | Why it matters |
 |---|---|
@@ -379,13 +444,14 @@ This helps evaluate whether observed 2026 changes resemble the hypothetical GEO 
 | One product category | Results may not generalize beyond carry-on suitcases |
 | One model/prompt setup | Shopping-answer outputs may vary across models, prompts, and runs |
 | Manual/product-page text extraction | Filtered text may omit some webpage context |
+| Wayback snapshot quality | Historical pages vary in capture completeness and visible text quality |
 | No claim of intent | The analysis cannot prove that brands intentionally optimized for GEO |
 | Composite score is descriptive | The advantage score summarizes answer behavior but is not causal evidence |
 | Product-level heterogeneity | A strong original page may not benefit from rewriting, while a weaker or less structured page may benefit more |
 
 ---
 
-## 16. Next Steps
+## 17. Next Steps
 
 Potential extensions:
 
@@ -400,9 +466,11 @@ Potential extensions:
 
 ---
 
-## 17. Appendix: Candidate Links Not Used
+## 18. Appendix: Candidate Links Not Used
 
 Some candidate products were considered but excluded because they lacked usable archived text, had insufficient Wayback capture quality, or showed too little text-level change for the intended comparison.
+
+<div style="overflow-x:auto">
 
 | Product | Link | Reason not used |
 |---|---|---|
@@ -410,13 +478,16 @@ Some candidate products were considered but excluded because they lacked usable 
 | Victorinox Spectra 3.0 Frequent Flyer Carry-On | [Product page](https://www.victorinox.com/en-US/Products/Travel-Gear/Carry-On-Bags/Spectra-30-Frequent-Flyer-Carry-On/p/611756/) | Archived/current text was not as clean for the 2023/2024 vs 2026 comparison, and the main sample already includes traditional/premium luggage-brand cases |
 | July Carry On | [Current page](https://july.com/us/luggage/carry-on/?moss=) / [Wayback snapshot](https://web.archive.org/web/20231127143310/https://july.com/us/luggage/carry-on/?moss=) | 2023 and 2026 text appeared too similar, or the Wayback capture did not provide enough detailed visible product text |
 
+</div>
+
 ---
 
-## 18. Status
+## 19. Status
 
 Current status:
 
 - Product sample finalized
+- Wayback Machine snapshots selected
 - Raw and filtered texts collected
 - GEO-style rewrites generated
 - Shopping-answer prompt created
