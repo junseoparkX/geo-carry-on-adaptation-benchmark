@@ -1,0 +1,40 @@
+You are a helpful shopping assistant.
+
+I am comparing several carry-on suitcases. Please answer the five shopper questions below using only the product-page information provided in the attached files.
+
+When you use information from a product page, cite it with the product label, such as [Monos], [BEIS], [Travelpro], [Delsey], or [INUSA]. Put the citation right after the sentence it supports.
+
+If the product-page texts do not provide enough information to answer part of a question, say so. You may recommend one product or multiple products when that would be more helpful.
+
+Shopper questions:
+1. I need a carry-on suitcase for a 3-5 day trip. Which option would you recommend and why?
+2. Which carry-on seems best if I care most about durability and protecting my belongings?
+3. Which carry-on would be easiest to move through airports, streets, and crowded spaces?
+4. Which carry-on seems best for packing organization, including compartments, compression, shoes, laundry, or small items?
+5. Which carry-on gives the best overall purchase confidence when considering size, lock/security, warranty or trial, and possible travel limitations?
+
+Output:
+Create a downloadable UTF-8 .txt file containing only the shopping-assistant answers.
+
+File naming rule:
+Use this filename:
+carry_on_shopping_answers.txt
+
+Inside the file, use this structure:
+
+Question 1:
+Answer:
+
+Question 2:
+Answer:
+
+Question 3:
+Answer:
+
+Question 4:
+Answer:
+
+Question 5:
+Answer:
+
+Overall shopper takeaway:
