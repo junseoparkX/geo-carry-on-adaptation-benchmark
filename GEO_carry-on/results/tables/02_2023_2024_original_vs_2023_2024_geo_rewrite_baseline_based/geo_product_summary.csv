@@ -1,0 +1,6 @@
+﻿metric_source,product,n_question_contexts,n_source_files,citation_rate,mean_ref_count,total_ref_count,mean_first_citation_score,mean_recommendation_rank_proxy,mean_rank_score_proxy,top1_cited_share,mean_feature_count,mean_feature_coverage,mean_tfidf_product_answer_similarity,mean_bigram_overlap_product_answer,mean_pais_product_answer_influence_score
+one_product_geo_focal,BEIS,5,1,0.6,0.6,3,0.4,3.4,0.52,0.2,1.8,0.12,0.019681310485105234,0.012512218963831867,0.15981309494159582
+one_product_geo_focal,Delsey,5,1,0.0,0.0,0,0.0,6.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+one_product_geo_focal,INUSA,5,1,0.2,0.2,1,0.05,5.6,0.08,0.0,0.0,0.0,0.004817324822768245,0.0,0.027630131631220318
+one_product_geo_focal,Monos,5,1,1.0,1.2,6,0.22333333333333333,3.4,0.52,0.0,2.4,0.16,0.027749484852574426,0.012452107279693486,0.18408437972913558
+one_product_geo_focal,Travelpro,5,1,1.0,1.4,7,0.7666666666666666,1.6,0.8800000000000001,0.6,3.6,0.24,0.047638145480522955,0.08196402435454599,0.33982223274928647

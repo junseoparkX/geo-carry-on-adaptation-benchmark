@@ -1,0 +1,93 @@
+Prompt Source Notes: E-Commerce GEO Rewrite Prompt for Carry-On Product Pages
+
+Purpose
+This note documents why the GEO rewrite prompt was designed this way and which literature informed each prompt feature. The prompt is intended for a carry-on suitcase benchmark comparing older 2023/2024 archived product-page text, a GEO-style rewrite of that older text, and current 2026 product-page text.
+
+Core design choice
+The prompt is format-preserving rather than fully standardized. This is intentional. If every older product page were rewritten into the same universal modern template, later similarity results could reflect prompt-imposed formatting rather than real movement toward a 2026-style product page. Therefore, the prompt improves evidence density, shopper-use framing, comparison usefulness, and clarity while keeping the original product's section order and brand-specific layout as much as possible.
+
+Source 1: E-GEO: A Testbed for Generative Engine Optimization in E-Commerce
+How it informed the prompt:
+- The prompt is explicitly e-commerce-focused because E-GEO defines the e-commerce GEO problem as rewriting product descriptions to improve downstream product ranking in a generative shopping setting.
+- The prompt emphasizes product ranking, recommendation usefulness, shopper intent, product comparison, and commercial visibility because E-GEO treats e-commerce GEO as a ranking/re-ranking problem.
+- The prompt prioritizes realistic shopper intent because E-GEO builds its benchmark from long-form recommendation-oriented product queries that include constraints, preferences, and shopping contexts.
+- The prompt avoids pure generic GEO wording and instead focuses on product-selection attributes such as durability, materials, features, fit, capacity, and use case.
+
+Source 2: AutoGEO / What Generative Search Engines Like and How to Optimize Web Content Cooperatively
+How it informed the prompt:
+- AutoGEO motivates using explicit preference rules as prompt guidance. The prompt therefore translates general generative-engine preferences into concrete instructions.
+- AutoGEO's learned rules emphasize directness, completeness, relevance, structure, accuracy/specificity, conciseness, clear language, logical structure, and specific evidence. These appear in the prompt as instructions to improve clarity, scannability, buyer-relevant explanation, concrete product evidence, and logical flow.
+- AutoGEO also evaluates generative engine utility, so the prompt includes strict factuality and preservation constraints to avoid degrading answer quality or introducing unsupported claims.
+
+Source 3: GEO: Generative Engine Optimization
+How it informed the prompt:
+- The original GEO paper motivates rewriting source content to improve visibility in generative engine responses.
+- The paper's successful heuristics include evidence-oriented strategies such as citations, quotations, and statistics. Because this project uses product pages and not external source pages, the prompt adapts this idea into "evidence-like product details" rather than fabricated citations or quotations.
+- The prompt explicitly prohibits keyword stuffing because GEO-style work suggests generative engines reward credibility, evidence, and content quality more than simple keyword repetition.
+- The prompt includes "do not invent" constraints because the original GEO-style strategies can be risky if applied too aggressively to product pages.
+
+Source 4: Think Before Writing / FeatGEO
+How it informed the prompt:
+- FeatGEO motivates feature-level optimization rather than only surface-level paraphrasing.
+- The prompt therefore controls structural, content, and linguistic features: section order, headings, bullets, evidence-like specs, buyer-use framing, concise language, and factual preservation.
+- FeatGEO also supports multi-objective thinking: improve visibility while preserving quality. The prompt reflects this by balancing AI-shopping usefulness with factuality and near-original length.
+
+Source 5: Structural Feature Engineering for GEO
+How it informed the prompt:
+- Structural GEO work motivates the role of document architecture, information chunking, and visual/readability structure in citation behavior.
+- The prompt therefore asks for scannable headings, bullets, short paragraphs, and logically separated ideas, but only when the original structure already supports them.
+- Because this benchmark uses plain text extracted from product pages rather than full HTML/schema, the prompt applies structural ideas conservatively at the text level.
+
+Source 6: SAGEO Arena and the user's benchmark design notes
+How it informed the prompt:
+- SAGEO-style work warns that visibility depends on retrieval, reranking, and generation, not only final answer citation. The prompt therefore does not claim to optimize full live AI-search ranking; it creates a controlled page-level GEO rewrite.
+- The user's benchmark design compares older original text, older GEO-style rewrite, and current 2026 text. The prompt therefore avoids a fully standardized rewrite and preserves product-specific format to reduce prompt-induced artifacts.
+- The filtering notes for this project state that raw product text should preserve original wording, claims, and section order while removing boilerplate/noise. The rewrite prompt follows the same logic: preserve product facts and page layout while improving AI-shopping usefulness.
+
+Feature-to-source mapping
+
+1. "E-commerce / generative-shopping benchmark"
+Primary source: E-GEO.
+Reason: E-GEO is specifically about product-description rewriting and ranking in e-commerce generative engines.
+
+2. "Improve shopper-intent alignment"
+Primary source: E-GEO.
+Reason: E-GEO uses realistic, constraint-rich recommendation queries and evaluates product ranking based on user intent.
+
+3. "Make the product easier to compare"
+Primary source: E-GEO.
+Secondary source: AutoGEO.
+Reason: E-commerce generative engines act as re-rankers over candidate products; AutoGEO emphasizes relevance, completeness, and specificity.
+
+4. "Highlight concrete product details"
+Primary sources: GEO, AutoGEO, FeatGEO.
+Reason: GEO and AutoGEO emphasize evidence and specificity; FeatGEO motivates content-feature optimization.
+
+5. "Use dimensions, weight, capacity, materials, lock, wheels, handles, expansion, organization, warranty, airline-fit language"
+Primary source: E-GEO plus the carry-on benchmark design.
+Reason: These are the product-selection attributes most relevant to carry-on suitcase ranking and comparison.
+
+6. "Improve scannability using headings, bullets, and short paragraphs"
+Primary sources: AutoGEO, Structural Feature Engineering for GEO, SAGEO Arena.
+Reason: These works emphasize logical structure, headings/lists, structural fields, and machine-readable organization.
+
+7. "Preserve the original section order and layout"
+Primary source: benchmark design constraint.
+Secondary source: FeatGEO / structural GEO.
+Reason: The experiment compares the rewrite to 2026 pages, so preserving format reduces artificial similarity caused by prompt standardization.
+
+8. "Do not invent facts, reviews, citations, awards, or statistics"
+Primary sources: AutoGEO, GEO, E-GEO.
+Reason: GEO methods can increase visibility with evidence-style content, but product-page rewriting must preserve semantic/factual content and avoid unsupported claims.
+
+9. "Do not add customer reviews, Q&A, navigation, footer, related products, cart text, or promotional modules"
+Primary source: project filtering notes.
+Secondary source: AutoGEO's relevance/noise preference.
+Reason: Reviews and UI boilerplate create noise for text similarity and can contaminate product-page content comparison.
+
+10. "Do not over-expand; keep length close to original"
+Primary sources: AutoGEO and benchmark design.
+Reason: AutoGEO emphasizes conciseness and relevance; the benchmark needs comparable old/rewrite/current text length to avoid similarity artifacts.
+
+Practical interpretation
+This prompt should be used to generate the main "format-preserving GEO rewrite" for each archived 2023/2024 carry-on product page. A separate fully standardized rewrite could be created later as a robustness check, but it should not be the main benchmark input.

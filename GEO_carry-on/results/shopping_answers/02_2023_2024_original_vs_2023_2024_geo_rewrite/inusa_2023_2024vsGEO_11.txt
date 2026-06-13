@@ -1,0 +1,48 @@
+Question 11:
+Answer:
+For reducing gate-check risk, Monos has the strongest airline-fit language because its page says the Carry-On is designed to fit in the overhead bin of “almost any flight, anywhere in the world,” but the provided text does not include dimensions or weight, so a shopper should still verify the exact measurements before relying on that claim. [Monos]
+Travelpro also looks relatively safe for major U.S. domestic airlines because the page says it was sizer-bin tested for overhead bins on most major domestic airlines and says it complies with carry-on size restrictions published by nearly all major domestic airlines; however, the page warns that the fully expanded carry-on may not meet airline restrictions. [Travelpro]
+Delsey looks safer for U.S. domestic use than for stricter or international rules because the page says the Carry-On Plus is sized for overhead compartments on most domestic airlines and that the larger Carry-On Plus fits overhead on most U.S. airlines, while the smaller carry-on is the one described as fitting most international and U.S. airlines. [Delsey]
+INUSA gives a compact “20 inch” product name and says it is suitable for most major airlines, but its listed dimensions exclude wheels and the page tells shoppers to add 2 inches to the height to determine overall height, creating a possible size concern that should be checked with the airline. [INUSA]
+BEIS provides exterior dimensions including wheel and handle and calls the bag carry-on-friendly, but it does not provide a specific airline-fit claim beyond recommending that shoppers follow airline guidelines and check weight limits, so stricter-airline shoppers should double-check both size and expanded depth before purchase. [BEIS]
+
+Question 12:
+Answer:
+Travelpro is one of the strongest choices for keeping the bag looking good because it describes an easy-to-clean 100% polycarbonate shell, a textured finish that helps reduce the visibility of scuffs or scratching, aluminum corner armor for high-impact areas, and a water-resistant interior pocket for damp items or toiletries. [Travelpro]
+BEIS is also strong for easy care because the page lists “Care: Spot Clean,” says the interior is durable and easy to spot clean, mentions water-resistant zipper tape, and lists stain resistance as a feature. [BEIS]
+INUSA provides useful durability and appearance-protection claims because its PC/ABS material has a micro diamond finish and the hard-flex construction is described as helping resist water and scratches. [INUSA]
+Delsey gives some protective durability information, including a textured basketweave polycarbonate shell and shock-absorbing corner protectors that safeguard against wear and tear, but the provided text does not mention stain resistance, scuff resistance, scratch resistance, water resistance, or wipe-clean care. [Delsey]
+Monos mentions an unbreakable polycarbonate shell, aerospace-grade polycarbonate, premium materials, and YKK zippers, but the provided text does not mention stain resistance, scuff resistance, scratch resistance, water resistance, wipe-clean care, or a protective finish. [Monos]
+
+Question 13:
+Answer:
+Delsey provides the clearest sustainability-related claim because its feature list says the bag is made with recycled materials, and it pairs that claim with durability details such as a 100% polycarbonate shell, SECURITECH zipper that is 3 times more resistant than a standard zipper, shock-absorbing corner protectors, and warranty information. [Delsey]
+The evidence for Delsey is helpful but incomplete because the provided text does not specify which parts are recycled, what percentage of the product uses recycled material, or any certification for the recycled-material claim. [Delsey]
+Monos, BEIS, and Delsey mention vegan leather details or trim, which is a concrete animal-free material detail, but the pages do not explain whether the vegan leather is environmentally preferable or responsibly sourced. [Monos] [BEIS] [Delsey]
+BEIS emphasizes durability through 100% virgin polycarbonate and says virgin materials guarantee higher durability, but that is a durability claim rather than a sustainability claim. [BEIS]
+INUSA and Travelpro provide durability-related material information, but the provided text does not give concrete sustainability-related information for those products. [INUSA] [Travelpro]
+
+Question 14:
+Answer:
+Travelpro seems most useful overall for travel-day convenience because it combines external USB-A and USB-C fast-charge ports, a dedicated external-access battery pocket for FAA-compliant power-bank storage, a 2-inch expansion option, multiple accessory pockets, a water-resistant pocket for damp items or toiletries, a TSA-approved lock, and sizer-bin-tested overhead-bin language for most major domestic airlines. [Travelpro]
+BEIS is the best alternative for hands-free and packing-control convenience because it includes a retractable bag attach strap that holds up to 15 pounds, a side carry handle with a weight-limit indicator, 2-inch expansion, a zipper puller that identifies the expansion zipper, a zip pouch for small valuables, and separate pouches for dirty clothes, shoes, undergarments, and damp clothing. [BEIS]
+Delsey is useful if charging and organization matter because it includes a USB port, removable pouch, laundry bag, shoe bag, mesh zippered pockets, dual compartments, compression straps, and a TSA-accepted lock, but the power bank is not included. [Delsey]
+Monos has practical packing and handling extras such as a compression pad, ballistic nylon straps, a zipped panel, generously sized pockets, a TSA-approved lock, whisper-quiet wheels, and nesting inside Monos check-in sizes, but it does not mention charging, a weight indicator, or a bag strap in the provided text. [Monos]
+INUSA covers basic travel convenience with four silent 360° spinner wheels, a TSA-approved combination lock, tie-down straps, ergonomic gel handles, side studs, and self-repairable oversized zippers, but it does not mention charging, a weight indicator, a bag strap, tracking-device storage, or quick-access storage. [INUSA]
+None of the provided product-page texts mentions dedicated tracking-device storage. [Monos] [BEIS] [Travelpro] [Delsey] [INUSA]
+
+Question 15:
+Answer:
+Travelpro has the strongest information quality overall because it gives overall and case dimensions, weight, volume, material, airline-fit testing language, expansion cautions, USB and battery-pocket details, organization features, cleanability and scuff/scratch-visibility claims, warranty coverage, return-trial information, and specific handling features. [Travelpro]
+BEIS is also strong because it provides exterior and interior dimensions, materials, care guidance, capacity, weight, expansion details, wheel and handle details, the bag strap capacity, weight-limit indicator, TSA locks, water-resistant zipper tape, stain resistance, and interior pouch details. [BEIS]
+Delsey provides good information on dimensions, weight, volume, material, domestic-airline fit, USB charging, zipper security, included bags, interior organization, antimicrobial lining, wheels, corner protection, and warranty categories, but shoppers should double-check exact airline fit for stricter or international carriers and ask what “made with recycled materials” specifically covers. [Delsey]
+Monos gives strong general quality claims, warranty and trial information, and useful interior descriptions, but the provided text leaves important questions unanswered, including exact dimensions, weight, volume, care instructions, airline-fit details beyond the broad overhead-bin claim, scratch or scuff resistance, and sustainability evidence beyond vegan leather details. [Monos]
+INUSA gives useful basics such as material, weight, listed dimensions, wheel and lock details, handles, zippers, and an airline-suitability claim, but shoppers should double-check overall dimensions including wheels and handles, specific airline fit, warranty or return policy, capacity, care instructions, and sustainability information. [INUSA]
+For Travelpro, shoppers should double-check the fully expanded size before flying, confirm power-bank compatibility because the power bank is not included, and clarify the apparent size-chart differences where the provided text lists both 7.9-pound/39-liter and 8.1-pound/45-liter values. [Travelpro]
+For BEIS, shoppers should double-check airline size limits, expanded dimensions, warranty details, and the capacity wording because the page lists capacity as 49–61 L in one place but also says “Capacity 49-61LBS” elsewhere. [BEIS]
+
+Overall shopper takeaway:
+For strict carry-on fit, Monos has the boldest global overhead-bin claim, but Travelpro gives the clearest measured domestic-airline testing and a warning about expanded use. [Monos] [Travelpro]
+For easy cleaning and long-term appearance, Travelpro and BEIS are the strongest choices, with INUSA also offering water- and scratch-resistance claims. [Travelpro] [BEIS] [INUSA]
+For sustainability, Delsey has the best concrete claim because it says the bag is made with recycled materials, but the evidence is not detailed enough to confirm percentage, certification, or component-level coverage. [Delsey]
+For travel-day convenience, Travelpro is the most feature-rich overall, while BEIS is especially compelling for the weight indicator and bag strap. [Travelpro] [BEIS]
