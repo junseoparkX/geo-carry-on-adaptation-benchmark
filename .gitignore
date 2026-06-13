@@ -16,3 +16,14 @@
 **/.ipynb_checkpoints/
 **/.DS_Store
 **/Thumbs.db
+!E-GEO-ML/
+!E-GEO-ML/**
+!AI_Search_GEO_Literature_Review/
+!AI_Search_GEO_Literature_Review/**
+# Large E-GEO ML files excluded from GitHub
+E-GEO-ML/models/*.joblib
+E-GEO-ML/data/egeo_train_val_visibility_long_all_models.csv
+E-GEO-ML/data/egeo_train_val_model_agreement_features.csv
+E-GEO-ML/data/egeo_train_val_visibility_gpt5.csv
+E-GEO-ML/data/egeo_train_val_products_flat.csv
+E-GEO-ML/data/egeo_gpt5_internal_train_split.csv

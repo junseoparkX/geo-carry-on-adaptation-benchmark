@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Comparative Analysis of GEO, AI Search Visibility, and RAG Benchmarks</title>
+
+  <style>
+    :root {
+      --bg: #eef2f6;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #647084;
+      --faint: #f7f9fc;
+      --soft: #f1f5f9;
+      --line: #d8dee8;
+      --line2: #e8edf4;
+      --navy: #10233f;
+      --blue: #255a9b;
+      --slate: #334155;
+      --green: #166534;
+      --gold: #a16207;
+      --red: #991b1b;
+      --purple: #5b21b6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% -5%, rgba(37, 90, 155, 0.10), transparent 34%),
+        radial-gradient(circle at 95% 0%, rgba(15, 23, 42, 0.08), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 90, 155, 0.28);
+    }
+
+    a:hover {
+      border-bottom-color: var(--blue);
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 30px auto;
+      background: var(--paper);
+      padding: 50px 58px 54px;
+      border: 1px solid var(--line2);
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--navy), var(--blue), #6b7280);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 3px 0 10px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--slate);
+      background: #fbfdff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.12;
+      margin: 0 0 10px;
+      color: var(--navy);
+      letter-spacing: -0.035em;
+      max-width: 920px;
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 19px;
+      margin: 34px 0 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--navy);
+      letter-spacing: -0.015em;
+      break-after: avoid;
+    }
+
+    h3 {
+      font-size: 15.5px;
+      margin: 22px 0 8px;
+      color: var(--navy);
+      break-after: avoid;
+    }
+
+    p {
+      margin: 8px 0 12px;
+    }
+
+    ul {
+      margin: 8px 0 14px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-size: 13.2px;
+    }
+
+    .cover-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 20px;
+    }
+
+    .cover-chips span {
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--faint);
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .callout {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--blue);
+      background: linear-gradient(135deg, #f8fafc, #eef5ff);
+      padding: 14px 16px;
+      margin: 18px 0;
+      border-radius: 12px;
+      break-inside: avoid;
+    }
+
+    .callout strong {
+      color: var(--navy);
+    }
+
+    .method-note {
+      border-left-color: var(--slate);
+      background: linear-gradient(135deg, #fbfdff, #f5f7fb);
+    }
+
+    .toc {
+      background: #fbfcfe;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      margin: 18px 0 24px;
+      break-inside: avoid;
+    }
+
+    .toc-title {
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .toc ol {
+      margin: 0;
+      padding-left: 18px;
+      columns: 2;
+      column-gap: 28px;
+    }
+
+    .toc li {
+      margin: 3px 0 6px;
+      break-inside: avoid;
+    }
+
+    .toc a {
+      color: var(--ink);
+      border-bottom-color: transparent;
+    }
+
+    .toc a:hover {
+      color: var(--blue);
+      border-bottom-color: rgba(37, 90, 155, 0.45);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+
+    .kpi {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      border-radius: 13px;
+      padding: 13px 12px;
+      break-inside: avoid;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+    }
+
+    .kpi .value {
+      font-size: 25px;
+      font-weight: 850;
+      line-height: 1.05;
+      color: var(--navy);
+      letter-spacing: -0.03em;
+    }
+
+    .kpi .label {
+      margin-top: 4px;
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 14px 0 22px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      padding: 13px;
+      border-radius: 13px;
+      break-inside: avoid;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--navy);
+    }
+
+    .card .tagline {
+      display: inline-block;
+      margin-bottom: 7px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--faint);
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 12.3px;
+      break-inside: auto;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tr {
+      break-inside: avoid;
+    }
+
+    th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 8px 9px;
+      border: 1px solid var(--navy);
+      vertical-align: top;
+      font-weight: 800;
+    }
+
+    td {
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfbfc;
+    }
+
+    .compact-table {
+      font-size: 11.5px;
+      line-height: 1.25;
+    }
+
+    .compact-table th,
+    .compact-table td {
+      padding: 6px 7px;
+    }
+
+    .num {
+      width: 34px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .score {
+      font-weight: 850;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      margin: 2px 3px 2px 0;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .deep {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .mod {
+      background: #e6edf6;
+      color: var(--navy);
+      border-color: #cbd5e1;
+    }
+
+    .brief {
+      background: white;
+      color: var(--muted);
+    }
+
+    .green {
+      background: #ecfdf5;
+      color: var(--green);
+      border-color: #bbf7d0;
+    }
+
+    .gold {
+      background: #fffbeb;
+      color: var(--gold);
+      border-color: #fde68a;
+    }
+
+    .red {
+      background: #fef2f2;
+      color: var(--red);
+      border-color: #fecaca;
+    }
+
+    .purple {
+      background: #f5f3ff;
+      color: var(--purple);
+      border-color: #ddd6fe;
+    }
+
+    .bar-list {
+      margin: 14px 0 20px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 78px;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line2);
+    }
+
+    .bar-row:last-child {
+      border-bottom: none;
+    }
+
+    .bar-label {
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .bar-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #edf2f7;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--navy), var(--blue));
+      border-radius: 999px;
+    }
+
+    .bar-count {
+      color: var(--muted);
+      text-align: right;
+      font-weight: 750;
+    }
+
+    .matrix-note {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin: 12px 0 18px;
+      line-height: 1.45;
+    }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0.48in 0.52in;
+    }
+
+    @media print {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        background: white;
+        font-size: 10.6px;
+        line-height: 1.34;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        max-width: none;
+        padding: 0;
+        overflow: visible;
+      }
+
+      .page::before {
+        height: 5px;
+        position: fixed;
+      }
+
+      .eyebrow {
+        font-size: 8.5px;
+        padding: 3px 7px;
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 21px;
+        margin-bottom: 5px;
+        max-width: none;
+      }
+
+      h2 {
+        display: block;
+        font-size: 13.8px;
+        line-height: 1.15;
+        margin-top: 13px;
+        padding-top: 7px;
+        margin-bottom: 5px;
+      }
+
+      h3 {
+        font-size: 11.2px;
+        margin-top: 9px;
+        margin-bottom: 4px;
+      }
+
+      p {
+        margin: 4px 0 6px;
+      }
+
+      ul {
+        margin: 4px 0 7px;
+        padding-left: 16px;
+      }
+
+      li {
+        margin-bottom: 3px;
+      }
+
+      .meta {
+        font-size: 9.1px;
+        margin-bottom: 7px;
+      }
+
+      .cover-chips {
+        gap: 4px;
+        margin: 5px 0 8px;
+      }
+
+      .cover-chips span {
+        font-size: 8.3px;
+        padding: 2px 6px;
+      }
+
+      .callout {
+        padding: 7px 9px;
+        margin: 7px 0 8px;
+        border-radius: 7px;
+      }
+
+      .toc {
+        padding: 8px 10px;
+        margin: 8px 0 10px;
+        border-radius: 8px;
+      }
+
+      .toc-title {
+        font-size: 8.7px;
+        margin-bottom: 4px;
+      }
+
+      .toc ol {
+        columns: 2;
+        padding-left: 15px;
+        column-gap: 20px;
+      }
+
+      .toc li {
+        margin: 1px 0 3px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+        margin: 6px 0 8px;
+      }
+
+      .kpi {
+        padding: 6px 7px;
+        border-radius: 8px;
+      }
+
+      .kpi .value {
+        font-size: 15px;
+      }
+
+      .kpi .label {
+        font-size: 6.8px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        margin: 6px 0 8px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        margin: 6px 0 8px;
+      }
+
+      .card {
+        padding: 6px 7px;
+        border-radius: 8px;
+      }
+
+      .card .tagline {
+        font-size: 6.8px;
+        padding: 1.5px 5px;
+        margin-bottom: 3px;
+      }
+
+      table {
+        font-size: 7.9px;
+        line-height: 1.12;
+        margin: 5px 0 7px;
+      }
+
+      .compact-table {
+        font-size: 7.8px;
+      }
+
+      th,
+      td,
+      .compact-table th,
+      .compact-table td {
+        padding: 2.4px 3.2px;
+      }
+
+      .pill {
+        font-size: 6.8px;
+        padding: 1.4px 4.5px;
+      }
+
+      .bar-list {
+        margin: 6px 0 8px;
+        border-radius: 8px;
+      }
+
+      .bar-row {
+        grid-template-columns: 72px 1fr 48px;
+        gap: 6px;
+        padding: 4px 6px;
+      }
+
+      .bar-track {
+        height: 7px;
+      }
+
+      .bar-label,
+      .bar-count {
+        font-size: 7.5px;
+      }
+
+      .matrix-note {
+        font-size: 7.6px;
+        padding: 6px 8px;
+        border-radius: 7px;
+      }
+
+      .small {
+        font-size: 8.2px;
+      }
+
+      .footer {
+        font-size: 8.2px;
+        margin-top: 12px;
+        padding-top: 7px;
+      }
+
+      a {
+        color: inherit;
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page" id="top">
+
+    <div class="eyebrow">Comparative Analysis Companion</div>
+
+    <h1>Comparative Analysis of GEO, AI Search Visibility, and RAG Benchmarks</h1>
+
+    <div class="meta">
+      Benchmark, metric, similarity, limitation, and finance/econ gap analysis based on 23 papers · Prepared by Junseo Park · May 2026
+    </div>
+
+    <div class="cover-chips">
+      <span>23 papers analyzed</span>
+      <span>Score-based priority</span>
+      <span>Benchmark comparison</span>
+      <span>Similarity matrix logic</span>
+      <span>Finance/econ research gaps</span>
+    </div>
+
+    <div class="callout">
+      <strong>Purpose.</strong>
+      The literature memo summarizes the research narrative. This companion analysis reorganizes the same 23 papers by
+      benchmark design, metric family, evidence type, similarity cluster, limitation pattern, and finance/econ research gap.
+      The goal is to identify which papers are directly comparable, which outcomes can be translated into economic variables,
+      and where a finance/econ project can contribute beyond existing computer science benchmarks.
+    </div>
+
+    <nav class="toc" aria-label="Comparative analysis table of contents">
+      <div class="toc-title">Analysis navigation</div>
+      <ol>
+        <li><a href="#dashboard">Analysis dashboard</a></li>
+        <li><a href="#score-priority">Score-based paper priority</a></li>
+        <li><a href="#taxonomy">Paper taxonomy and evidence types</a></li>
+        <li><a href="#benchmark-comparison">Benchmark comparison</a></li>
+        <li><a href="#metric-crosswalk">Metric crosswalk for finance/econ variables</a></li>
+        <li><a href="#similarity">Similarity and cluster interpretation</a></li>
+        <li><a href="#limitations">Limitation heatmap summary</a></li>
+        <li><a href="#finance-gaps">Finance/econ research gaps</a></li>
+        <li><a href="#designs">Recommended empirical designs</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="dashboard">1. Analysis Dashboard</h2>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="value">23</div>
+        <div class="label">Papers</div>
+      </div>
+
+      <div class="kpi">
+        <div class="value">10</div>
+        <div class="label">Central</div>
+      </div>
+
+      <div class="kpi">
+        <div class="value">10</div>
+        <div class="label">Highly relevant</div>
+      </div>
+
+      <div class="kpi">
+        <div class="value">3</div>
+        <div class="label">Supporting</div>
+      </div>
+
+      <div class="kpi">
+        <div class="value">5</div>
+        <div class="label">Analysis axes</div>
+      </div>
+    </div>
+
+    <p>
+      The comparative analysis uses the numerical priority score as the primary inclusion criterion.
+      The original categorical priority label is not used for analysis. This avoids inconsistencies between manually assigned
+      labels and the score rubric. The score rubric is interpreted as follows: 9–10 = must-read / central paper,
+      8–8.9 = highly relevant and should be included in the memo, 7–7.9 = useful supporting paper,
+      6–6.9 = background only, and below 6 = mention briefly or exclude.
+    </p>
+
+    <div class="callout method-note">
+      <strong>Analytical framing.</strong>
+      The 23 papers should not be compared by headline performance gains alone. They measure different units:
+      webpages, retrieved documents, products, generated claims, citations, page blocks, user preferences, and live search-result sets.
+      The analysis therefore uses benchmark type, metric family, evaluation unit, and limitation category to make comparisons meaningful.
+    </div>
+
+    <h2 id="score-priority">2. Score-Based Paper Priority</h2>
+
+    <p>
+      The score distribution shows that the corpus is concentrated in central and highly relevant papers. This supports using
+      all 23 papers in the broader project, while weighting the central papers more heavily in the main memo and analysis.
+    </p>
+
+    <div class="bar-list">
+      <div class="bar-row">
+        <div class="bar-label">9–10</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
+        <div class="bar-count">10 papers</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">8–8.9</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
+        <div class="bar-count">10 papers</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">7–7.9</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 30%;"></div></div>
+        <div class="bar-count">3 papers</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">6–6.9</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+        <div class="bar-count">0 papers</div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">&lt;6</div>
+        <div class="bar-track"><div class="bar-fill" style="width: 0%;"></div></div>
+        <div class="bar-count">0 papers</div>
+      </div>
+    </div>
+
+    <table class="compact-table">
+      <thead>
+        <tr>
+          <th>Score range</th>
+          <th>Interpretation used in this analysis</th>
+          <th>Papers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>9–10</strong></td>
+          <td>Must-read / central paper</td>
+          <td>1, 2, 3, 5, 8, 9, 10, 11, 20, 23</td>
+        </tr>
+        <tr>
+          <td><strong>8–8.9</strong></td>
+          <td>Highly relevant, should include in memo</td>
+          <td>4, 6, 7, 12, 13, 14, 18, 19, 21, 22</td>
+        </tr>
+        <tr>
+          <td><strong>7–7.9</strong></td>
+          <td>Useful supporting paper</td>
+          <td>15, 16, 17</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="taxonomy">3. Paper Taxonomy and Evidence Types</h2>
+
+    <p>
+      The papers fall into distinct evidence types. The key methodological point is that GEO optimization papers, live
+      platform audits, RAG benchmarks, multimodal document benchmarks, and temporal robustness papers answer different
+      empirical questions.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="tagline">Optimization</span>
+        <strong>GEO and website adaptation</strong>
+        Papers 1, 2, 4, 5, 6, 7, 8, and 9 ask whether content, structure, or evidence ecosystems can be optimized for AI visibility.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Measurement</span>
+        <strong>Live AI search / platform audit</strong>
+        Papers 10, 11, 12, 13, and 14 measure how deployed or user-facing AI search systems select, cite, and present sources.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Evaluation</span>
+        <strong>RAG and citation quality</strong>
+        Papers 16, 17, 21, 22, and 23 evaluate retrieval quality, source support, noisy context, outdated information, and citation fidelity.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Finance</span>
+        <strong>Financial and multimodal documents</strong>
+        Papers 18, 19, and 20 connect AI search evaluation to financial statements, reports, slide decks, tables, charts, and visual citations.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Temporal</span>
+        <strong>Freshness and outdated evidence</strong>
+        Papers 21 and 22 isolate a major risk for finance/econ applications: AI systems may retrieve or rely on outdated facts.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Bridge</span>
+        <strong>Finance/econ opportunity</strong>
+        The strongest project bridge is converting technical AI visibility metrics into firm, product, publisher, and platform outcomes.
+      </div>
+    </div>
+
+    <h2 id="benchmark-comparison">4. Benchmark Comparison</h2>
+
+    <p>
+      Benchmark comparison is the most important technical layer because each paper measures a different object. The table below
+      focuses on the anchor benchmarks and the most finance/econ-relevant supporting benchmarks. Full benchmark details should
+      remain in the companion workbook.
+    </p>
+
+    <table class="compact-table">
+      <thead>
+        <tr>
+          <th>Paper</th>
+          <th>Benchmark / dataset</th>
+          <th>Evaluation unit</th>
+          <th>Domain</th>
+          <th>Main metric family</th>
+          <th>Finance/econ use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. GEO</strong></td>
+          <td>GEO-Bench</td>
+          <td>Source within generated answer</td>
+          <td>Multi-domain web</td>
+          <td>Visibility / impression</td>
+          <td>Defines AI answer visibility as an outcome beyond traditional search rank.</td>
+        </tr>
+
+        <tr>
+          <td><strong>2. SAGEO Arena</strong></td>
+          <td>SAGEO Arena</td>
+          <td>Target document across retrieval, reranking, and generation</td>
+          <td>Large-scale web documents</td>
+          <td>Stage-level visibility</td>
+          <td>Shows where a firm/source drops out of the AI-search pipeline.</td>
+        </tr>
+
+        <tr>
+          <td><strong>8. AutoGEO</strong></td>
+          <td>GEO-Bench, Researchy-GEO, E-commerce</td>
+          <td>Query-document pair</td>
+          <td>General + commerce</td>
+          <td>GEO visibility and utility</td>
+          <td>Shows that AI-search preference rules can be learned and used for content adaptation.</td>
+        </tr>
+
+        <tr>
+          <td><strong>9. E-GEO</strong></td>
+          <td>E-GEO testbed</td>
+          <td>Product listing / product rank</td>
+          <td>E-commerce</td>
+          <td>Rank change / recommendation visibility</td>
+          <td>Strongest direct bridge to seller competition, product visibility, and marketplace outcomes.</td>
+        </tr>
+
+        <tr>
+          <td><strong>10. AI Disrupts Search</strong></td>
+          <td>Google Search, AIO, Gemini benchmark</td>
+          <td>Query-level source set</td>
+          <td>Broad web</td>
+          <td>Source overlap / activation</td>
+          <td>Measures how AI search reallocates visibility relative to traditional Google results.</td>
+        </tr>
+
+        <tr>
+          <td><strong>11. Measuring AIO</strong></td>
+          <td>Longitudinal Google AIO audit</td>
+          <td>AIO, source, and atomic claim</td>
+          <td>Trending queries</td>
+          <td>Activation, source quality, claim fidelity</td>
+          <td>Connects AI-generated summaries to source selection, claim support, and publisher impact.</td>
+        </tr>
+
+        <tr>
+          <td><strong>20. FinRAGBench-V</strong></td>
+          <td>Financial multimodal RAG benchmark</td>
+          <td>Financial page, block, answer, citation</td>
+          <td>Finance</td>
+          <td>Retrieval, QA, visual citation</td>
+          <td>Directly relevant for 10-Ks, annual reports, prospectuses, investor decks, tables, and charts.</td>
+        </tr>
+
+        <tr>
+          <td><strong>23. ALCE</strong></td>
+          <td>ASQA, QAMPARI, ELI5 citation benchmark</td>
+          <td>Answer statement and citation</td>
+          <td>General QA</td>
+          <td>Citation precision / recall</td>
+          <td>Provides a method to distinguish being cited from being correctly supported.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout method-note">
+      <strong>Comparison rule.</strong>
+      Headline gains should not be compared directly across benchmarks. A 35% visibility improvement, a product-rank gain,
+      an AIO activation rate, a citation-recall score, and a retrieval Recall@10 score are measuring different levels of the
+      AI-search process.
+    </div>
+
+    <h2 id="metric-crosswalk">5. Metric Crosswalk for Finance/Econ Variables</h2>
+
+    <p>
+      The main value of the CS literature for a finance/econ project is the menu of measurable technical outcomes.
+      These measures can be converted into dependent variables for firm-, product-, publisher-, or platform-level analysis.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Metric family</th>
+          <th>Example metrics</th>
+          <th>Representative papers</th>
+          <th>Finance/econ interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AI visibility / impression</strong></td>
+          <td>Visibility score, impression score, position-adjusted word count</td>
+          <td>1, 4, 5, 6, 8</td>
+          <td>How much exposure a source receives inside an AI-generated answer.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Stage-level search visibility</strong></td>
+          <td>Retrieval hit rate, reranking rank, generation citation rate</td>
+          <td>2</td>
+          <td>Whether a firm or source is lost at retrieval, reranking, or generation.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Product / recommendation ranking</strong></td>
+          <td>Rank change, target recommendation, recommendation probability</td>
+          <td>7, 9</td>
+          <td>How AI-mediated recommendation changes seller or product visibility.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Source selection / overlap</strong></td>
+          <td>Citation count, Jaccard similarity, rank-biased overlap</td>
+          <td>3, 10, 11, 13</td>
+          <td>How much AI search diverges from traditional search and concentrates attention.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Citation absorption / influence</strong></td>
+          <td>Absorption score, source influence, answer-source semantic influence</td>
+          <td>3</td>
+          <td>Whether a cited source actually shapes the final answer.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Citation fidelity</strong></td>
+          <td>Citation precision, citation recall, unsupported-claim rate, contradiction rate</td>
+          <td>11, 23</td>
+          <td>Whether AI-generated claims are supported by cited sources.</td>
+        </tr>
+
+        <tr>
+          <td><strong>User preference</strong></td>
+          <td>Preference votes, Bradley-Terry scores, citation-related coefficients</td>
+          <td>12, 13</td>
+          <td>Whether source presentation affects perceived credibility and user choice.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Temporal freshness</strong></td>
+          <td>Outdated-information harm, date-specific accuracy, dynamic QA accuracy</td>
+          <td>21, 22</td>
+          <td>Whether AI systems use stale firm, product, regulatory, or market information.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Visual citation</strong></td>
+          <td>Page-level precision/recall, block-level precision/recall</td>
+          <td>19, 20</td>
+          <td>Whether AI systems can cite the correct financial report page, chart, table, or block.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="similarity">6. Similarity and Cluster Interpretation</h2>
+
+    <p>
+      Paper similarity is most useful when it is based on conceptual features rather than title keywords.
+      The analysis workbook codes each paper on dimensions such as GEO optimization, stage-aware search, structured content,
+      citation measurement, citation fidelity, live platform audit, RAG evaluation, multimodality, finance specificity,
+      e-commerce relevance, user preference, temporal freshness, public code/data availability, and economic-outcome proxy.
+    </p>
+
+    <div class="matrix-note">
+      similarity(paper_i, paper_j) = cosine_similarity(feature_vector_i, feature_vector_j)
+      <br />
+      feature vector dimensions include: GEO optimization, platform audit, RAG evaluation, citation fidelity,
+      structured content, e-commerce, finance, multimodal, temporal freshness, user preference, and economic proxy.
+    </div>
+
+    <table class="compact-table">
+      <thead>
+        <tr>
+          <th>Cluster</th>
+          <th>Papers</th>
+          <th>Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Core GEO optimization</strong></td>
+          <td>1, 4, 5, 8</td>
+          <td>These papers focus on rewriting, feature-level optimization, strategy learning, and visibility gains.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Pipeline / structural GEO</strong></td>
+          <td>2, 6, 7</td>
+          <td>These papers shift from answer-stage optimization to retrieval, structure, and evidence ecosystems.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Commerce GEO</strong></td>
+          <td>9</td>
+          <td>E-GEO is distinctive because it uses product ranking, making it the closest CS benchmark to market outcomes.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Live AI search audit</strong></td>
+          <td>10, 11, 14</td>
+          <td>These papers measure deployed search interfaces, especially Google Search, AI Overviews, and Featured Snippets.</td>
+        </tr>
+
+        <tr>
+          <td><strong>User preference / source gatekeeping</strong></td>
+          <td>12, 13</td>
+          <td>These papers use Search Arena-style data to study user preference, citation behavior, and news-source concentration.</td>
+        </tr>
+
+        <tr>
+          <td><strong>RAG and citation quality</strong></td>
+          <td>16, 17, 23</td>
+          <td>These papers evaluate retrieval, reasoning, noisy context, and whether citations support generated claims.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Finance / multimodal documents</strong></td>
+          <td>18, 19, 20</td>
+          <td>These papers are most relevant for financial statements, reports, slides, tables, charts, and visual citation.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Temporal RAG</strong></td>
+          <td>21, 22</td>
+          <td>These papers isolate dynamic facts and outdated information, which are important for finance and regulation.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="limitations">7. Limitation Heatmap Summary</h2>
+
+    <p>
+      The limitation analysis converts paper-level open gaps into comparable categories. This highlights a central tradeoff:
+      controlled GEO benchmarks have better experimental control but weaker external validity, while live platform audits have
+      stronger real-world relevance but weaker causal identification.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Limitation category</th>
+          <th>Most affected papers</th>
+          <th>Why it matters for finance/econ work</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>No direct economic outcomes</strong></td>
+          <td>Most papers</td>
+          <td>Clicks, sales, conversion, ad revenue, publisher traffic, and firm outcomes are rarely observed directly.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Simulated / benchmark setting</strong></td>
+          <td>1, 2, 4, 5, 6, 7, 8, 9</td>
+          <td>Optimization gains may not transfer cleanly to live ChatGPT, Perplexity, Gemini, or Google AIO behavior.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Observational / non-causal audit</strong></td>
+          <td>10, 11, 12, 13, 14</td>
+          <td>Platform audits show what happens, but usually cannot identify the causal effect of specific website changes.</td>
+        </tr>
+
+        <tr>
+          <td><strong>LLM-as-judge dependence</strong></td>
+          <td>Several benchmark papers</td>
+          <td>Evaluation may inherit model bias, prompt sensitivity, and reproducibility concerns.</td>
+        </tr>
+
+        <tr>
+          <td><strong>No content-intervention test</strong></td>
+          <td>10, 11, 12, 13, 14</td>
+          <td>Live audits rarely test whether a concrete page rewrite or schema change increases AI visibility.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Platform instability</strong></td>
+          <td>10, 11, 14, 21, 22</td>
+          <td>AI search systems change quickly, so measured visibility may be time-sensitive and difficult to replicate.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Limited finance linkage</strong></td>
+          <td>Most non-finance papers</td>
+          <td>Only a subset directly addresses financial statements, firm disclosures, investor documents, or market outcomes.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="finance-gaps">8. Finance/Econ Research Gaps</h2>
+
+    <p>
+      The strongest contribution for a finance/econ project is not to replicate existing GEO benchmarks, but to link AI visibility
+      to economic incentives and outcomes. The table below translates technical gaps into empirical research opportunities.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Gap area</th>
+          <th>What CS literature covers</th>
+          <th>Missing econ outcome</th>
+          <th>Possible empirical design</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AI visibility → economic outcome</strong></td>
+          <td>Citation, visibility, rank, source overlap</td>
+          <td>Traffic, conversion, sales, ad revenue</td>
+          <td>Build a firm/product panel of AI visibility across ChatGPT, Perplexity, Gemini, Google AIO, and Google Search.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Firm website adaptation</strong></td>
+          <td>Content rewriting, structure, schema-like signals, GEO strategies</td>
+          <td>Real firm behavior after AI search adoption</td>
+          <td>Track FAQ pages, schema markup, headings, evidence density, and investor-relations pages over time.</td>
+        </tr>
+
+        <tr>
+          <td><strong>E-commerce competition</strong></td>
+          <td>AI-mediated product rank and recommendation visibility</td>
+          <td>Seller sales, conversion, marketplace competition</td>
+          <td>Compare AI product ranking with traditional marketplace rank and product attributes.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Publisher impact</strong></td>
+          <td>AIO source selection, citation concentration, claim fidelity</td>
+          <td>Referral traffic, ad revenue, publisher bargaining</td>
+          <td>Link AI citations and AIO presence to publisher traffic proxies and ad-tech exposure.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Financial disclosure visibility</strong></td>
+          <td>Financial-document RAG, visual citation, long-context evaluation</td>
+          <td>Investor attention, disclosure strategy, firm-level information access</td>
+          <td>Test whether AI systems retrieve and cite 10-Ks, annual reports, prospectuses, and investor slides correctly.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Temporal misinformation</strong></td>
+          <td>Outdated information benchmarks and daily-changing QA</td>
+          <td>Stale company, market, regulatory, or macroeconomic information risk</td>
+          <td>Monitor AI answers to time-sensitive finance prompts over repeated collection windows.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="designs">9. Recommended Empirical Designs</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <span class="tagline">Design 1</span>
+        <strong>AI visibility panel</strong>
+        Query ChatGPT, Perplexity, Gemini, Google AI Overviews, and traditional Google Search using standardized firm,
+        product, and financial-information prompts. Record citation, rank, answer inclusion, source overlap, and citation position.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Design 2</span>
+        <strong>Website adaptation study</strong>
+        Use archived webpages or repeated crawls to track changes in FAQ design, schema markup, headings, evidence density,
+        product descriptions, and investor-relations formatting after AI search adoption.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Design 3</span>
+        <strong>Financial disclosure retrievability</strong>
+        Test whether AI systems correctly retrieve, cite, and summarize 10-Ks, annual reports, earnings slides, tables, charts,
+        and prospectuses. Evaluate page-level and block-level citation accuracy.
+      </div>
+
+      <div class="card">
+        <span class="tagline">Design 4</span>
+        <strong>Publisher and platform impact</strong>
+        Measure whether AI Overviews and AI-search citations displace traditional search exposure. Link source visibility
+        to publisher category, credibility, ad exposure, and potential traffic proxies.
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Bottom-line research opportunity.</strong>
+      The CS literature has developed strong technical measures of AI visibility, retrieval, citation, and RAG quality.
+      The finance/econ contribution is to connect those measures to economic behavior: firm adaptation, product competition,
+      publisher incentives, consumer attention, platform power, and information disclosure.
+    </div>
+
+    <div class="footer">
+      Note: This comparative analysis is designed as a companion to the literature memo and the Excel workbook.
+      The workbook should remain the source of truth for full paper-level metadata, complete benchmark fields,
+      similarity matrices, limitation flags, and finance/econ gap coding.
+    </div>
+
+  </main>
+</body>
+</html>

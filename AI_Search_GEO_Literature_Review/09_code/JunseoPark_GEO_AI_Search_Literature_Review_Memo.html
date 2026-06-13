@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEO and AI-Mediated Search Visibility: Literature Memo</title>
+
+  <style>
+    :root {
+      --bg: #eef2f6;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #647084;
+      --faint: #f7f9fc;
+      --soft: #f1f5f9;
+      --line: #d8dee8;
+      --line2: #e8edf4;
+      --navy: #10233f;
+      --blue: #255a9b;
+      --slate: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% -5%, rgba(37, 90, 155, 0.10), transparent 34%),
+        radial-gradient(circle at 95% 0%, rgba(15, 23, 42, 0.08), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37, 90, 155, 0.28);
+    }
+
+    a:hover {
+      border-bottom-color: var(--blue);
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 30px auto;
+      background: var(--paper);
+      padding: 50px 58px 54px;
+      border: 1px solid var(--line2);
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--navy), var(--blue), #6b7280);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 3px 0 10px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--slate);
+      background: #fbfdff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+        font-size: 30px;
+        line-height: 1.12;
+        margin: 0 0 10px;
+        color: var(--navy);
+        letter-spacing: -0.035em;
+        max-width: 900px;
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 19px;
+      margin: 34px 0 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--navy);
+      letter-spacing: -0.015em;
+      break-after: avoid;
+    }
+
+    h3 {
+      font-size: 15.5px;
+      margin: 22px 0 8px;
+      color: var(--navy);
+      break-after: avoid;
+    }
+
+    p {
+      margin: 8px 0 12px;
+    }
+
+    ul {
+      margin: 8px 0 14px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-size: 13.2px;
+    }
+
+    .cover-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 20px;
+    }
+
+    .cover-chips span {
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--faint);
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .callout {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--blue);
+      background: linear-gradient(135deg, #f8fafc, #eef5ff);
+      padding: 14px 16px;
+      margin: 18px 0;
+      border-radius: 12px;
+      break-inside: avoid;
+    }
+
+    .callout strong {
+      color: var(--navy);
+    }
+
+    .toc {
+      background: #fbfcfe;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      margin: 18px 0 24px;
+      break-inside: avoid;
+    }
+
+    .toc-title {
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .toc ol {
+      margin: 0;
+      padding-left: 18px;
+      columns: 2;
+      column-gap: 28px;
+    }
+
+    .toc li {
+      margin: 3px 0 6px;
+      break-inside: avoid;
+    }
+
+    .toc a {
+      color: var(--ink);
+      border-bottom-color: transparent;
+    }
+
+    .toc a:hover {
+      color: var(--blue);
+      border-bottom-color: rgba(37, 90, 155, 0.45);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0 22px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      padding: 13px;
+      border-radius: 13px;
+      break-inside: avoid;
+      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--navy);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 12.3px;
+      break-inside: auto;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tr {
+      break-inside: avoid;
+    }
+
+    th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 8px 9px;
+      border: 1px solid var(--navy);
+      vertical-align: top;
+      font-weight: 800;
+    }
+
+    td {
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfbfc;
+    }
+
+    .num {
+      width: 34px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .score {
+      font-weight: 800;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      margin-bottom: 3px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .deep {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .mod {
+      background: #e6edf6;
+      color: var(--navy);
+      border-color: #cbd5e1;
+    }
+
+    .brief {
+      background: white;
+      color: var(--muted);
+    }
+
+    .paper-ref {
+      color: var(--navy);
+      font-weight: 650;
+      border-bottom: 1px solid rgba(37, 90, 155, 0.28);
+    }
+
+    .paper-ref:hover {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    .paper-ref em {
+      font-style: italic;
+    }
+
+    tr:target td {
+      background: #eef5ff !important;
+      box-shadow: inset 3px 0 0 var(--blue);
+    }
+
+    .appendix-table {
+      font-size: 11.2px;
+      line-height: 1.18;
+    }
+
+    .appendix-table th,
+    .appendix-table td {
+      padding: 5px 6px;
+    }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0.48in 0.52in;
+    }
+
+    @media print {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        background: white;
+        font-size: 10.8px;
+        line-height: 1.38;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        max-width: none;
+        padding: 0;
+        overflow: visible;
+      }
+
+      .page::before {
+        height: 5px;
+        position: fixed;
+      }
+
+      .eyebrow {
+        font-size: 8.5px;
+        padding: 3px 7px;
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 22px;
+        margin-bottom: 5px;
+        max-width: none;
+      }
+
+      h2 {
+        display: block;
+        font-size: 14px;
+        line-height: 1.15;
+        margin-top: 14px;
+        padding-top: 8px;
+        margin-bottom: 6px;
+      }
+
+      h3 {
+        font-size: 11.3px;
+        margin-top: 10px;
+        margin-bottom: 4px;
+      }
+
+      p {
+        margin: 4px 0 6px;
+      }
+
+      ul {
+        margin: 4px 0 7px;
+        padding-left: 16px;
+      }
+
+      li {
+        margin-bottom: 3px;
+      }
+
+      .meta {
+        font-size: 9.1px;
+        margin-bottom: 7px;
+      }
+
+      .cover-chips {
+        gap: 4px;
+        margin: 5px 0 8px;
+      }
+
+      .cover-chips span {
+        font-size: 8.3px;
+        padding: 2px 6px;
+      }
+
+      .callout {
+        padding: 7px 9px;
+        margin: 7px 0 8px;
+        border-radius: 7px;
+      }
+
+      .toc {
+        padding: 8px 10px;
+        margin: 8px 0 10px;
+        border-radius: 8px;
+      }
+
+      .toc-title {
+        font-size: 8.7px;
+        margin-bottom: 4px;
+      }
+
+      .toc ol {
+        columns: 2;
+        padding-left: 15px;
+        column-gap: 20px;
+      }
+
+      .toc li {
+        margin: 1px 0 3px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        margin: 6px 0 8px;
+      }
+
+      .card {
+        padding: 6px 7px;
+        border-radius: 8px;
+      }
+
+      table {
+        font-size: 8.1px;
+        line-height: 1.12;
+        margin: 5px 0 7px;
+      }
+
+      th,
+      td {
+        padding: 2.5px 3.4px;
+      }
+
+      .pill {
+        font-size: 6.8px;
+        padding: 1.4px 4.5px;
+      }
+
+      .small {
+        font-size: 8.4px;
+      }
+
+      .appendix-table {
+        font-size: 9.0px;
+        line-height: 1.16;
+      }
+
+      .appendix-table th,
+      .appendix-table td {
+        padding: 3.9px 4.4px;
+      }
+
+      .footer {
+        font-size: 8.2px;
+        margin-top: 12px;
+        padding-top: 7px;
+      }
+
+      a {
+        color: inherit;
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page" id="top">
+
+    <div class="eyebrow">Focused CS Literature Review</div>
+
+    <h1>Generative Engine Optimization and AI-Mediated Search Visibility</h1>
+
+    <div class="meta">
+    A focused computer science literature memo for finance and economics applications · Prepared by Junseo Park · May 2026
+    </div>
+
+    <div class="cover-chips">
+      <span>23 papers reviewed</span>
+      <span>GEO / AI visibility</span>
+      <span>RAG + citation quality</span>
+      <span>Finance/econ relevance</span>
+    </div>
+
+    <div class="callout">
+      <strong>Bottom line.</strong>
+      The computer science literature suggests that AI-mediated search changes online visibility from a traditional
+      ranking-and-click problem into a retrieval, citation, answer-inclusion, recommendation, and evidence-quality problem.
+      For a finance/economics project, the most promising contribution is to convert these CS measures into firm-, publisher-,
+      product-, or platform-level visibility outcomes and then study how AI search changes incentives, competition, and
+      information disclosure.
+    </div>
+
+    <nav class="toc" aria-label="Memo table of contents">
+      <div class="toc-title">Memo navigation</div>
+      <ol>
+        <li><a href="#executive-summary">Executive summary</a></li>
+        <li><a href="#literature-map">Literature map and memo inclusion logic</a></li>
+        <li><a href="#key-findings">Key findings from the CS literature</a></li>
+        <li><a href="#measures">Measures and empirical outcomes useful for finance/econ work</a></li>
+        <li><a href="#open-gaps">Open gaps and recommended next steps</a></li>
+        <li><a href="#appendix-role-map">Appendix: paper-level memo role map</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="executive-summary">1. Executive Summary</h2>
+
+    <p>
+      This memo reviews 23 recent papers on Generative Engine Optimization (GEO), AI search visibility, retrieval-augmented
+      generation (RAG), citation behavior, structured website content, platform auditing, and financial-document RAG.
+      The main shift in this literature is that website visibility is no longer determined only by whether a page ranks
+      highly in a traditional search engine results page. In AI-mediated search, a page must be retrieved, selected,
+      cited, summarized faithfully, and sometimes used as evidence for a generated recommendation.
+    </p>
+
+    <p>
+      The most central papers for the memo are
+      <a class="paper-ref" href="#paper-1"><em>GEO: Generative Engine Optimization</em></a>,
+      <a class="paper-ref" href="#paper-2"><em>SAGEO Arena</em></a>,
+      <a class="paper-ref" href="#paper-8"><em>What Generative Search Engines Like</em></a>,
+      <a class="paper-ref" href="#paper-9"><em>E-GEO</em></a>,
+      <a class="paper-ref" href="#paper-10"><em>How Generative AI Disrupts Search</em></a>,
+      <a class="paper-ref" href="#paper-11"><em>Measuring Google AI Overviews</em></a>,
+      <a class="paper-ref" href="#paper-20"><em>FinRAGBench-V</em></a>, and
+      <a class="paper-ref" href="#paper-23"><em>Enabling Large Language Models to Generate Text with Citations</em></a>.
+      Together, they provide the conceptual foundation, optimization mechanisms, platform-level measurement evidence,
+      e-commerce relevance, and finance-specific RAG/citation framework.
+    </p>
+
+    <p>
+      For a finance/economics project, the literature points to a clear opportunity: measure AI visibility as an economic
+      outcome. Candidate dependent variables include citation rate, source overlap with traditional search, answer inclusion,
+      recommendation probability, product rank change, citation position, citation absorption, claim fidelity,
+      unsupported-claim rate, and visual citation precision/recall for financial reports. These measures could be linked
+      to firm characteristics, website structure, disclosure quality, publisher business models, product-market competition,
+      and potential downstream outcomes such as traffic, revenue, conversion, or market concentration.
+    </p>
+
+    <h2 id="literature-map">2. Literature Map and Memo Inclusion Logic</h2>
+
+    <p>
+      The 23 papers are organized into five clusters rather than summarized one by one. This keeps the memo focused on
+      mechanisms that are useful for a finance/economics project: optimization, platform measurement, source credibility,
+      financial-document retrieval, and downstream economic outcomes.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <strong>GEO and website optimization</strong>
+        Papers 1, 2, 4, 5, 6, 7, 8, and 9 define how content can be changed to improve AI visibility.
+      </div>
+
+      <div class="card">
+        <strong>Platform measurement and auditing</strong>
+        Papers 10, 11, 12, 13, and 14 measure how AI search systems select, cite, and present sources.
+      </div>
+
+      <div class="card">
+        <strong>RAG and citation quality</strong>
+        Papers 16, 17, 21, 22, and 23 provide evaluation tools for retrieval, freshness, and source support.
+      </div>
+
+      <div class="card">
+        <strong>Finance and multimodal documents</strong>
+        Papers 18, 19, and 20 connect RAG to financial statements, reports, slide decks, tables, charts, and visual citations.
+      </div>
+
+      <div class="card">
+        <strong>Multimodal AI search background</strong>
+        Paper 15 supports the broader point that search is moving beyond text-only webpages.
+      </div>
+
+      <div class="card">
+        <strong>Finance/econ bridge</strong>
+        The most relevant bridge is from AI visibility metrics to firm strategy, seller ranking, publisher impact, and platform power.
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Review emphasis</th>
+          <th>Papers</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>Core anchor papers</strong></td>
+          <td>1, 2, 8, 9, 10, 11, 20, 23</td>
+          <td>
+            These define the main conceptual story: GEO, stage-aware optimization, AI search preferences, e-commerce ranking,
+            live platform measurement, Google AI Overviews auditing, finance-domain RAG, and citation quality.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Supporting mechanism papers</strong></td>
+          <td>3, 4, 5, 6, 7, 12, 13, 18, 19, 21, 22</td>
+          <td>
+            These extend the story with citation absorption, feature-level optimization, agentic/evidence-ecosystem approaches,
+            user preference, source concentration, financial retrieval, and freshness.
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Context and evaluation background</strong></td>
+          <td>14, 15, 16, 17</td>
+          <td>
+            These are useful method or background papers, especially for audit design, multimodal search, and robust RAG evaluation.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="key-findings">3. Key Findings from the CS Literature</h2>
+
+    <h3>3.1 GEO reframes SEO as an optimization problem for generated answers</h3>
+
+    <p>
+      <a class="paper-ref" href="#paper-1"><em>GEO: Generative Engine Optimization</em></a>
+      is the foundational paper because it formalizes the creator-side problem:
+      how can content owners modify text so that generative engines cite or include their content more prominently?
+      The key contribution is not only the term GEO, but also the measurement idea that visibility can be quantified by
+      position-adjusted word share and subjective impression. This is directly useful for finance/econ work because firms,
+      publishers, and product sellers may care less about blue-link ranking and more about whether AI systems quote, cite,
+      summarize, or recommend them.
+    </p>
+
+    <p>
+      Later GEO papers deepen this idea.
+      <a class="paper-ref" href="#paper-8"><em>What Generative Search Engines Like</em></a>
+      provides a stronger recent empirical anchor by identifying content preferences and building AutoGEO-style optimization methods.
+      <a class="paper-ref" href="#paper-2"><em>SAGEO Arena</em></a>
+      adds a crucial pipeline insight: visibility may differ across retrieval, reranking, and generation.
+      A website could be retrieved but not cited, or cited but not influential in the final answer. This matters for empirical design
+      because measuring only final citations can miss where the visibility loss occurs.
+    </p>
+
+    <h3>3.2 Website adaptation is likely to involve structure, evidence density, and stage-aware content</h3>
+
+    <p>
+      The GEO literature suggests that optimization is not merely keyword stuffing. Several papers point to evidence-rich
+      and structured content as a more plausible adaptation path.
+      <a class="paper-ref" href="#paper-4"><em>Feature-level optimization</em></a>
+      papers show that controllable page features can affect citation visibility, while
+      <a class="paper-ref" href="#paper-6"><em>structural-feature</em></a>
+      papers emphasize headings, paragraph chunking, lists, tables, links, and schema-like organization.
+      <a class="paper-ref" href="#paper-5"><em>Agentic</em></a>
+      and
+      <a class="paper-ref" href="#paper-7"><em>ecosystem-level GEO</em></a>
+      papers further suggest that firms may not only rewrite a single page, but coordinate product pages, FAQs, reviews,
+      comparison pages, support pages, and third-party evidence to increase the probability that AI search agents encounter
+      and trust a target source.
+    </p>
+
+    <p>
+      The e-commerce paper
+      <a class="paper-ref" href="#paper-9"><em>E-GEO</em></a>
+      is especially relevant for economic analysis because its outcome is product ranking rather than only citation share.
+      This makes it easier to connect GEO to seller competition, platform-mediated discovery, product differentiation,
+      and consumer choice. In a finance/econ setting, the analogous question is whether AI systems change which firms,
+      products, or publishers become visible when consumers ask purchase, investment, insurance, credit, or financial-information queries.
+    </p>
+
+    <h3>3.3 Live AI search systems redistribute visibility relative to traditional search</h3>
+
+    <p>
+      The platform-measurement papers are important because they move beyond controlled GEO benchmarks.
+      <a class="paper-ref" href="#paper-10"><em>How Generative AI Disrupts Search</em></a>
+      compares Google Search, Gemini, and AI Overviews and finds low overlap among sources across traditional and generative interfaces.
+      This supports the claim that AI search can reallocate attention away from the sources that dominate traditional search results.
+      <a class="paper-ref" href="#paper-11"><em>Measuring Google AI Overviews</em></a>
+      strengthens the economic relevance by measuring activation, source quality, claim fidelity, and publisher impact.
+      These papers help motivate an econ project on whether AI search changes traffic allocation, publisher bargaining power,
+      ad exposure, and source concentration.
+    </p>
+
+    <p>
+      <a class="paper-ref" href="#paper-12"><em>Search Arena</em></a>
+      and
+      <a class="paper-ref" href="#paper-13"><em>news-citation</em></a>
+      papers add two further insights. First, citations and longer, search-supported responses can correlate with user preference,
+      which means citation presentation itself may shape perceived credibility. Second, AI search can behave like an algorithmic
+      gatekeeper by concentrating citations among particular sources. These mechanisms are directly relevant to market concentration,
+      media economics, and platform power.
+    </p>
+
+    <h3>3.4 Citation quality and financial-document RAG are essential for finance applications</h3>
+
+    <p>
+      For finance/econ work, being cited is not enough. The cited source must actually support the claim.
+      <a class="paper-ref" href="#paper-23"><em>Enabling Large Language Models to Generate Text with Citations</em></a>
+      is therefore a key anchor because it distinguishes answer correctness from citation precision and recall.
+      This distinction matters in finance because an AI system may cite an annual report, 10-K, earnings slide,
+      or prospectus without using the correct table, chart, or textual evidence.
+    </p>
+
+    <p>
+      The finance-specific RAG papers make this point more concrete.
+      <a class="paper-ref" href="#paper-20"><em>FinRAGBench-V</em></a>
+      evaluates multimodal financial RAG with visual citation, while
+      <a class="paper-ref" href="#paper-19"><em>REAL-MM-RAG</em></a>
+      and
+      <a class="paper-ref" href="#paper-18"><em>LaRA</em></a>
+      show the relevance of financial statements, tables, slides, and long-context documents.
+      These papers suggest that finance/econ projects should not only ask whether a firm appears in an AI answer,
+      but also whether the AI system retrieves the correct financial evidence, cites the correct page/block,
+      and avoids outdated or unsupported claims.
+      <a class="paper-ref" href="#paper-21"><em>HOH</em></a>
+      and
+      <a class="paper-ref" href="#paper-22"><em>DailyQA</em></a>
+      add that temporal freshness is a major concern, especially when company facts, executives, market statistics,
+      regulations, and macroeconomic indicators change over time.
+    </p>
+
+    <h2 id="measures">4. Measures and Empirical Outcomes Useful for Finance/Econ Work</h2>
+
+    <p>
+      The literature provides a strong menu of measurable outcomes that could be translated into finance/econ variables.
+      These can be grouped into visibility, citation, quality, and economic-adaptation measures.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Outcome family</th>
+          <th>Possible variables</th>
+          <th>Finance/econ interpretation</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>Visibility</strong></td>
+          <td>Citation rate, answer inclusion, source rank, rank change, retrieval hit rate, recommendation probability</td>
+          <td>Whether a firm, seller, publisher, or product becomes visible in AI-mediated search.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Citation influence</strong></td>
+          <td>Citation position, position-adjusted word count, impression score, citation absorption, source overlap</td>
+          <td>How much the cited source actually shapes the final AI answer, not just whether it is listed.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Evidence quality</strong></td>
+          <td>Citation precision/recall, claim fidelity, unsupported-claim rate, contradiction rate, visual citation accuracy</td>
+          <td>Whether AI-generated financial or consumer information is verifiable and source-supported.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Platform comparison</strong></td>
+          <td>Jaccard overlap, rank-biased overlap, AIO activation rate, cross-system visibility differences</td>
+          <td>Whether ChatGPT, Perplexity, Gemini, Google AI Overviews, or traditional Google reward different sources.</td>
+        </tr>
+
+        <tr>
+          <td><strong>Strategic adaptation</strong></td>
+          <td>Changes in page structure, schema markup, evidence density, FAQ design, product-description rewriting, investor-relations formatting</td>
+          <td>Whether firms adapt content for AI systems rather than only human readers or traditional SEO.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="open-gaps">5. Open Gaps and Recommended Next Steps</h2>
+
+    <p>
+      The main gap is that the CS literature is strong on benchmarks, optimization methods, and platform audits, but still
+      limited on downstream economic outcomes. Most papers measure visibility, citation, rank, retrieval, or answer quality.
+      They usually do not observe actual clicks, sales, conversions, advertising revenue, publisher traffic, investor behavior,
+      or firm financial outcomes. This gap is exactly where a finance/econ project can contribute.
+    </p>
+
+    <p>
+      A promising research design would construct a firm- or product-level panel of AI visibility across multiple systems.
+      The project could query ChatGPT, Perplexity, Gemini, and Google AI Overviews using standardized consumer, product,
+      or financial-information prompts. It could then compare AI visibility with traditional Google ranking, website structure,
+      schema markup, firm size, domain authority, disclosure quality, product category, and downstream economic proxies.
+      If repeated over time, the design could also study whether firms change website structure after AI search systems
+      become more prominent.
+    </p>
+
+    <ul>
+      <li><strong>Firm strategy:</strong> Do firms rewrite product pages, investor-relations pages, FAQs, or structured data to become more visible to AI search systems?</li>
+      <li><strong>Market concentration:</strong> Do AI search systems concentrate citations among already-dominant sources, or do they create visibility opportunities for smaller firms and publishers?</li>
+      <li><strong>Platform power:</strong> How much do AI search systems diverge from traditional search, and which platforms redistribute source visibility the most?</li>
+      <li><strong>Information quality:</strong> Are AI-cited financial claims faithful to underlying documents, especially tables, charts, earnings slides, and reports?</li>
+      <li><strong>Temporal validity:</strong> How often do AI systems rely on outdated company, product, regulatory, or market information?</li>
+    </ul>
+
+    <h2 id="appendix-role-map">6. Appendix: Paper-Level Memo Role Map</h2>
+
+    <p>
+      The full Excel file contains detailed fields for research question, findings, data, platforms, methods, code/data
+      availability, links, limitations, and finance/econ relevance. The table below gives the recommended role of each paper
+      in the HTML memo.
+    </p>
+
+    <table class="appendix-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Paper</th>
+          <th>Score</th>
+          <th>Role</th>
+          <th>Contribution to review</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr id="paper-1">
+          <td class="num">1</td>
+          <td><strong>GEO: Generative Engine Optimization</strong></td>
+          <td><span class="score">10</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Defines GEO as the creator-side optimization problem and provides baseline visibility metrics.</td>
+          <td><a href="https://doi.org/10.1145/3637528.3671900" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://generative-engines.com/GEO/" target="_blank" rel="noopener noreferrer">Project</a></td>
+        </tr>
+
+        <tr id="paper-2">
+          <td class="num">2</td>
+          <td><strong>SAGEO Arena: A Realistic Environment for Evaluating Search-Augmented Generative Engine Optimization</strong></td>
+          <td><span class="score">9.5</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Shows that AI-search visibility should be measured across retrieval, reranking, and generation stages.</td>
+          <td><a href="https://arxiv.org/abs/2602.12187" target="_blank" rel="noopener noreferrer">Paper</a></td>
+        </tr>
+
+        <tr id="paper-3">
+          <td class="num">3</td>
+          <td><strong>From Citation Selection to Citation Absorption</strong></td>
+          <td><span class="score">9</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Separates being selected as a citation from actually influencing the generated answer.</td>
+          <td><a href="https://arxiv.org/abs/2604.25707" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/yaojingang/geo-citation-lab" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-4">
+          <td class="num">4</td>
+          <td><strong>Think Before Writing: Feature-Level Multi-Objective Optimization for Generative Citation Visibility</strong></td>
+          <td><span class="score">8.5</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Treats controllable page/content features as optimization variables for citation visibility.</td>
+          <td><a href="https://arxiv.org/abs/2604.19113" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/EvoNexusX/2026LiuFeatGEO" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-5">
+          <td class="num">5</td>
+          <td><strong>AgenticGEO: A Self-Evolving Agentic System for Generative Engine Optimization</strong></td>
+          <td><span class="score">9</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Shows how GEO may become adaptive and agentic rather than a one-time manual rewriting process.</td>
+          <td><a href="https://arxiv.org/abs/2603.20213" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/AIcling/agentic_geo" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-6">
+          <td class="num">6</td>
+          <td><strong>Structural Feature Engineering for Generative Engine Optimization</strong></td>
+          <td><span class="score">8</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Supports the claim that structure, formatting, and machine-readable design can affect citation behavior.</td>
+          <td><a href="https://arxiv.org/abs/2603.29979" target="_blank" rel="noopener noreferrer">Paper</a></td>
+        </tr>
+
+        <tr id="paper-7">
+          <td class="num">7</td>
+          <td><strong>EcoGEO: Trajectory-Aware Evidence Ecosystems for Web-Enabled LLM Search Agents</strong></td>
+          <td><span class="score">8.5</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Extends GEO from single-page rewriting to coordinated evidence ecosystems across search trajectories.</td>
+          <td><a href="https://arxiv.org/abs/2605.12887" target="_blank" rel="noopener noreferrer">Paper</a></td>
+        </tr>
+
+        <tr id="paper-8">
+          <td class="num">8</td>
+          <td><strong>What Generative Search Engines Like and How to Optimize Web Content Cooperatively</strong></td>
+          <td><span class="score">10</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Provides strong evidence on what generative search engines prefer and how content can be optimized cooperatively.</td>
+          <td><a href="https://openreview.net/forum?id=K8EinVWtUB" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/cxcscmu/AutoGEO" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-9">
+          <td class="num">9</td>
+          <td><strong>E-GEO: A Testbed for Generative Engine Optimization in E-Commerce</strong></td>
+          <td><span class="score">9.5</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Connects GEO directly to product ranking, seller visibility, and digital-market competition.</td>
+          <td><a href="https://arxiv.org/abs/2511.20867" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/psbagga17/E-GEO" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-10">
+          <td class="num">10</td>
+          <td><strong>How Generative AI Disrupts Search</strong></td>
+          <td><span class="score">9.5</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Compares Google Search, Gemini, and AI Overviews to show reallocation of source visibility.</td>
+          <td><a href="https://arxiv.org/abs/2604.27790" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/rag24/AIO" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-11">
+          <td class="num">11</td>
+          <td><strong>Measuring Google AI Overviews</strong></td>
+          <td><span class="score">9</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Measures AIO activation, source quality, claim fidelity, and publisher impact.</td>
+          <td><a href="https://arxiv.org/abs/2605.14021" target="_blank" rel="noopener noreferrer">Paper</a></td>
+        </tr>
+
+        <tr id="paper-12">
+          <td class="num">12</td>
+          <td><strong>Search Arena: Analyzing Search-Augmented LLMs</strong></td>
+          <td><span class="score">8.5</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Shows how citations, search context, and source presentation correlate with user preference.</td>
+          <td><a href="https://arxiv.org/abs/2506.05334" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/lmarena/search-arena" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-13">
+          <td class="num">13</td>
+          <td><strong>News Source Citing Patterns in AI Search Systems</strong></td>
+          <td><span class="score">8.5</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Useful for source concentration, media gatekeeping, and publisher visibility questions.</td>
+          <td><a href="https://arxiv.org/abs/2507.05301" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/yang3kc/ai_search_arena" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-14">
+          <td class="num">14</td>
+          <td><strong>Auditing Google’s AI Overviews and Featured Snippets</strong></td>
+          <td><span class="score">8</span></td>
+          <td><span class="pill brief">Context</span></td>
+          <td>Useful as an audit template, but the empirical domain is health rather than finance/econ.</td>
+          <td><a href="https://arxiv.org/abs/2511.12920" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/whocheers/Google-AIO-FS-Audit" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-15">
+          <td class="num">15</td>
+          <td><strong>MMSearch: Unveiling the Potential of Large Models as Multi-modal Search Engines</strong></td>
+          <td><span class="score">7.5</span></td>
+          <td><span class="pill brief">Context</span></td>
+          <td>Useful for broader multimodal search context, but less central to GEO or economic visibility.</td>
+          <td><a href="https://arxiv.org/abs/2409.12959" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://mmsearch.github.io" target="_blank" rel="noopener noreferrer">Project</a></td>
+        </tr>
+
+        <tr id="paper-16">
+          <td class="num">16</td>
+          <td><strong>Fact, Fetch, and Reason</strong></td>
+          <td><span class="score">7.5</span></td>
+          <td><span class="pill brief">Context</span></td>
+          <td>Useful for general RAG evaluation design, but not directly about website adaptation or AI visibility.</td>
+          <td><a href="https://aclanthology.org/2025.naacl-long.243/" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://huggingface.co/datasets/google/frames-benchmark" target="_blank" rel="noopener noreferrer">Dataset</a></td>
+        </tr>
+
+        <tr id="paper-17">
+          <td class="num">17</td>
+          <td><strong>MIRAGE: A Metric-Intensive Benchmark for Retrieval-Augmented Generation Evaluation</strong></td>
+          <td><span class="score">7.5</span></td>
+          <td><span class="pill brief">Context</span></td>
+          <td>Useful metrics for noisy retrieval and RAG evaluation, but secondary to the GEO and platform-audit papers.</td>
+          <td><a href="https://aclanthology.org/2025.findings-naacl.157/" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/nlpai-lab/MIRAGE" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-18">
+          <td class="num">18</td>
+          <td><strong>LaRA: Benchmarking Retrieval-Augmented Generation and Long-Context LLMs</strong></td>
+          <td><span class="score">8</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Includes financial statements and informs RAG-vs-long-context design for firm disclosures.</td>
+          <td><a href="https://proceedings.mlr.press/v267/li25dv.html" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/Alibaba-NLP/LaRA" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-19">
+          <td class="num">19</td>
+          <td><strong>REAL-MM-RAG: A Real-World Multi-Modal Retrieval Benchmark</strong></td>
+          <td><span class="score">8</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Directly relevant for financial reports, slide decks, tables, and visual retrieval.</td>
+          <td><a href="https://aclanthology.org/2025.acl-long.1528/" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://navvewas.github.io/REAL-MM-RAG/" target="_blank" rel="noopener noreferrer">Project</a></td>
+        </tr>
+
+        <tr id="paper-20">
+          <td class="num">20</td>
+          <td><strong>FinRAGBench-V: A Benchmark for Multimodal RAG with Visual Citation in the Financial Domain</strong></td>
+          <td><span class="score">9</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Strong finance-domain benchmark with multimodal retrieval and visual citation evaluation.</td>
+          <td><a href="https://arxiv.org/abs/2505.17471" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/zhaosuifeng/FinRAGBench-V" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://huggingface.co/datasets/zhaosuifeng/FinRAGBench-V" target="_blank" rel="noopener noreferrer">Dataset</a></td>
+        </tr>
+
+        <tr id="paper-21">
+          <td class="num">21</td>
+          <td><strong>HOH: A Dynamic Benchmark for Evaluating the Impact of Outdated Information on RAG</strong></td>
+          <td><span class="score">8.5</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Shows why outdated information is a major risk for finance/econ AI search.</td>
+          <td><a href="https://aclanthology.org/2025.acl-long.306/" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/0russwest0/HoH" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+
+        <tr id="paper-22">
+          <td class="num">22</td>
+          <td><strong>DailyQA: A Benchmark to Evaluate Web Retrieval Augmented LLMs Based on Real-World Changes</strong></td>
+          <td><span class="score">8</span></td>
+          <td><span class="pill mod">Supporting</span></td>
+          <td>Supports measuring whether web-augmented LLMs capture real-world changes and source freshness.</td>
+          <td><a href="https://arxiv.org/abs/2505.17162" target="_blank" rel="noopener noreferrer">Paper</a></td>
+        </tr>
+
+        <tr id="paper-23">
+          <td class="num">23</td>
+          <td><strong>Enabling Large Language Models to Generate Text with Citations</strong></td>
+          <td><span class="score">9</span></td>
+          <td><span class="pill deep">Anchor</span></td>
+          <td>Provides citation precision/recall framework to test whether cited sources actually support claims.</td>
+          <td><a href="https://aclanthology.org/2023.emnlp-main.398/" target="_blank" rel="noopener noreferrer">Paper</a> · <a href="https://github.com/princeton-nlp/ALCE" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      Note: This memo is based on the accompanying Excel literature table of 23 papers. The Excel file should remain the
+      authoritative source for full paper metadata, detailed summaries, GitHub links, dataset links, and verification notes.
+    </div>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Model,Raw model key,Valid AUROC ↑,Valid AUPRC ↑,Valid F1 ↑,Valid NDCG@3 ↑,Test AUPRC ↑,Test NDCG@3 ↑
+TF-IDF + numeric LR,textnum_tfidf_logreg,0.615,0.405,0.442,0.446,0.4,0.442
+TF-IDF + numeric SGD,textnum_tfidf_sgd_logloss,0.597,0.386,0.156,0.436,0.383,0.423
+TF-IDF LR,text_tfidf_logreg,0.608,0.399,0.428,0.433,0.387,0.425
+TF-IDF SVD + numeric LR,textsvd_num_logreg,0.597,0.381,0.445,0.417,0.382,0.425
+Numeric ExtraTrees,numeric_extra_trees,0.581,0.375,0.288,0.392,0.38,0.4
+Numeric XGBoost,numeric_xgboost,0.564,0.36,0.082,0.377,0.359,0.381
+Numeric RF,numeric_random_forest,0.578,0.372,0.229,0.377,0.377,0.402
+Numeric LR,numeric_logreg,0.565,0.353,0.407,0.376,0.362,0.387
+Numeric LightGBM,numeric_lightgbm,0.562,0.355,0.371,0.367,0.36,0.384
+Numeric HGB,numeric_hist_gradient_boosting,0.563,0.355,0.007,0.358,0.355,0.375

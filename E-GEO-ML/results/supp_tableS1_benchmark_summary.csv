@@ -1,0 +1,6 @@
+Family,Representative method,GPT-5 val NDCG@3 ↑,GPT-5 val AUPRC ↑,GPT-5 test NDCG@3 ↑,GPT-5 test AUPRC ↑,Cross-model mean NDCG@3 ↑
+Random,Random ranking,0.326,0.31,0.303,0.3,0.309
+Lexical,TF-IDF cosine,0.302,0.3,0.316,0.304,0.326
+Pretrained neural,E5-base,0.352,0.32,0.356,0.321,0.356
+Numeric-only trained ML,Numeric RF,0.377,0.372,0.402,0.377,0.4
+Text + metadata trained ML,TF-IDF + numeric LR,0.446,0.405,0.442,0.4,0.45

@@ -1,0 +1,16 @@
+Feature,Importance (%),High-low z,Direction
+TF-IDF query-product similarity,5.678,-0.012,Higher in low-visibility rows
+Product text length,5.237,-0.063,Higher in low-visibility rows
+Query-product overlap,5.12,-0.002,Higher in low-visibility rows
+rating number,4.996,0.103,Higher in high-visibility rows
+Query-feature overlap,4.919,0.035,Higher in high-visibility rows
+Query text length,4.887,0.0,No meaningful difference
+features len words,4.851,-0.009,Higher in low-visibility rows
+Query-title overlap,4.833,0.009,Higher in high-visibility rows
+Details text length,4.727,0.137,Higher in high-visibility rows
+Average rating,4.715,0.173,Higher in high-visibility rows
+title len words,4.603,-0.088,Higher in low-visibility rows
+Evidence keyword count,4.532,-0.049,Higher in low-visibility rows
+Numeric/spec count,4.137,-0.003,Higher in low-visibility rows
+description len words,4.052,-0.105,Higher in low-visibility rows
+numeric count features,4.049,0.037,Higher in high-visibility rows
