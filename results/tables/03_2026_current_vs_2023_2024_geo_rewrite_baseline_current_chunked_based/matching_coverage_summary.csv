@@ -1,2 +1,0 @@
-﻿n_geo_focal_rows,n_matched_rows,n_unmatched_geo_rows,geo_replacement_question_ids,current_baseline_question_ids,matched_question_ids,missing_current_baseline_question_ids_for_geo,missing_geo_question_ids_vs_expected,missing_current_question_ids_vs_expected
-100,100,0,"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20","1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20","1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",,,

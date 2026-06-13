@@ -1,6 +1,0 @@
-﻿metric_source,product,n_question_contexts,n_source_files,citation_rate,mean_ref_count,total_ref_count,mean_first_citation_score,mean_recommendation_rank_proxy,mean_rank_score_proxy,top1_cited_share,mean_feature_count,mean_feature_coverage,mean_tfidf_product_answer_similarity,mean_bigram_overlap_product_answer,mean_pais_product_answer_influence_score
-baseline_all_original,BEIS,5,1,0.4,0.6,3,0.26666666666666666,4.2,0.36,0.2,0.4,0.026666666666666665,0.012310089226684598,0.024338624338624337,0.11477947816279724
-baseline_all_original,Delsey,5,1,0.8,1.0,5,0.3833333333333333,2.8,0.64,0.2,2.8,0.18666666666666668,0.058215211843841416,0.03640642303433001,0.21443733915725116
-baseline_all_original,INUSA,5,1,0.2,0.2,1,0.03333333333333333,5.4,0.12,0.0,0.0,0.0,0.012327248288856634,0.0,0.025798782991104663
-baseline_all_original,Monos,5,1,0.6,0.8,4,0.15,4.0,0.4,0.0,1.4,0.09333333333333334,0.03743411471492468,0.008602150537634409,0.12411047885696344
-baseline_all_original,Travelpro,5,1,0.8,1.6,8,0.6666666666666666,2.2,0.76,0.6,2.0,0.13333333333333333,0.06415339126519752,0.13760683760683762,0.3268050372273985
