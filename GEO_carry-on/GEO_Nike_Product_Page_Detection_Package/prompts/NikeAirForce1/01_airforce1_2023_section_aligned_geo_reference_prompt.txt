@@ -1,0 +1,134 @@
+Here is the source:
+
+<TARGET DOCUMENT>
+Label: Nike Air Force 1 product page, 2023 Wayback-style text capture
+Filtering status: Product-specific same-topic text only; navigation/form artifacts, duplicate repeated text, and low-information UI labels were excluded.
+
+Product identity
+Product name: Nike Air Force 1 '07
+Product category: Men's Shoes
+Price: $115
+Color shown: White/White
+Style code: CW2288-111
+
+Available sizes
+M 5 / W 6.5
+M 5.5 / W 7
+M 6 / W 7.5
+M 6.5 / W 8
+M 7 / W 8.5
+M 7.5 / W 9
+M 8 / W 9.5
+M 8.5 / W 10
+M 9 / W 10.5
+M 9.5 / W 11
+M 10 / W 11.5
+M 10.5 / W 12
+M 11 / W 12.5
+M 11.5 / W 13
+M 12 / W 13.5
+M 12.5 / W 14
+M 13 / W 14.5
+M 14 / W 15.5
+M 15 / W 16.5
+M 16 / W 17.5
+M 17 / W 18.5
+M 18 / W 19.5
+
+Product description
+The radiance lives on in the Nike Air Force 1 '07, the b-ball OG that puts a fresh spin on what you know best: durably stitched overlays, clean finishes, and the perfect amount of flash to make you shine.
+
+Benefits
+The stitched overlays on the upper add heritage style, durability, and support.
+Originally designed for performance hoops, the Nike Air cushioning adds lightweight, all-day comfort.
+The low-cut silhouette adds a clean, streamlined look.
+The padded collar feels soft and comfortable.
+
+Product details
+Foam midsole
+Perforations on the toe
+Rubber sole
+Color shown: White/White
+Style code: CW2288-111
+
+Air Force 1 origins
+Debuting in 1982, the AF1 was the first basketball shoe to house Nike Air. Today, the Air Force 1 stays true to its roots with the same soft and springy cushioning that changed sneaker history.
+
+Size and fit
+Fits large; Nike recommends ordering a half size down.
+Size Guide is available.
+
+Shipping, returns, and pickup
+Free standard shipping on orders $50+ and free 60-day returns for Nike Members.
+Return policy exclusions apply.
+Pick-up available at select Nike Stores.
+
+Reviews and shopper feedback
+Reviews: 3836
+Rating: 4.8 Stars
+
+Selected review evidence:
+A reviewer said the shoe was a birthday present and that the recipient loved it.
+A reviewer described it as an old school cool work shoe and mentioned arch support, air units, comfort, style, and soft laces.
+A reviewer said it was a Christmas present for a 16-year-old son and mentioned the look and price.
+
+</TARGET DOCUMENT>
+
+You are given a historical e-commerce product page as a source. This source may be used by a generative search engine, AI shopping assistant, or product recommendation system to answer shopper questions.
+
+Your task is to rewrite the source document into a section-aligned GEO-consistent e-commerce product-page reference version for research purposes.
+
+This rewrite is a counterfactual reference version. It is not evidence that the retailer actually used GEO. The goal is to reorganize the same source information into a fixed section schema so that it can be compared more fairly with a current product page using section-level similarity.
+
+Important constraints:
+- Preserve the factual meaning of the original source.
+- Use only facts that appear in the source.
+- Do not invent product facts.
+- Do not add unsupported claims.
+- Do not add unsupported comparisons with other products.
+- Do not exaggerate.
+- Do not remove important product details that are present in the source.
+- Keep the tone neutral, clear, and non-misleading.
+- Keep all review, rating, price, color, size, style code, shipping, return, pickup, and payment information accurate to the source.
+- If a detail is not present in the source, do not add it.
+- Use the exact section headings provided below.
+- Keep the section headings exactly the same, even if the source does not contain information for that section.
+- If a section is not supported by the source, write exactly: Not present in source.
+- Do not create additional section headings beyond the required section headings.
+
+Literature-informed rewriting principles:
+
+1. Shopper-intent alignment
+Organize the page so that it can answer common shopper questions about fit, comfort, durability, style, everyday use, materials, cushioning, outsole or traction, reviews, shipping, returns, pickup, payment options, and purchase support when these facts appear in the source.
+
+2. Product-attribute clarity
+Make key product facts easy to identify, including product name, product category, price, color, style code, available sizes, fit recommendation, upper material, cushioning, midsole, outsole, collar, toe-box perforation, review count, rating, and review summary when provided.
+
+3. Section-aligned structural clarity
+Use the required section headings exactly as written. Make each section modular and self-contained so that it can be compared section-by-section with the same section schema in the current page.
+
+4. Evidence-based wording
+Prefer specific facts from the source over vague promotional language. If reviews or review summaries appear in the source, summarize them neutrally and do not add unsupported sentiment.
+
+5. Search and generation readability
+Use natural repeated product terms where appropriate, such as the product name, product category, fit, comfort, cushioning, material, outsole, everyday use, shipping, returns, and reviews. Avoid keyword stuffing.
+
+6. Neutrality and factual safety
+Do not claim that the product is the best, superior, recommended, medically beneficial, performance-enhancing, or suitable for a use case unless the source directly supports that claim.
+
+Required output format:
+Use exactly these section headings in exactly this order:
+
+Product identity
+Available sizes
+Size and fit
+Payment information
+Shipping and pickup
+Product description
+Benefits
+Product details
+Reviews and shopper feedback
+AI-generated summary
+Short shopper-focused summary
+
+Now rewrite the source document into a section-aligned GEO-consistent e-commerce product-page reference version, preserving all factual content while reorganizing it for AI-mediated shopper-question answering. After generating the output, save the final result as a downloadable .txt file with a clear and descriptive filename based on the product name, year, and output type.

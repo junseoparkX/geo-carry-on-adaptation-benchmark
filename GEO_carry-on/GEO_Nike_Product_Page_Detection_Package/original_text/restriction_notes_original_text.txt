@@ -1,0 +1,38 @@
+Restriction and Filtering Notes
+
+Purpose
+This folder stores the original raw text captures for reproducibility. These files should be preserved exactly as the scraped or copied text appeared in the working example.
+
+Important restriction
+Do not run cosine similarity directly on the raw original_text files as the main detection result. Raw text may contain scraping noise, form artifacts, duplicated product paragraphs, UI labels, and non-comparable page fragments.
+
+Recommended comparison input
+Use the files in the filtered_text folder for cosine similarity and feature-level comparison.
+
+Filtering rule
+The filtered_text files keep only same-product, same-topic, product-specific content. They remove or de-emphasize:
+- form artifacts such as "Top of Form" and "Bottom of Form"
+- low-information UI labels such as "Add to Bag" and "Favorite"
+- duplicate repeated product descriptions
+- repeated navigation-like labels
+- unrelated or potentially scraped non-product text
+- boilerplate that does not describe the target product or purchase support
+
+What should remain
+The filtered text should preserve:
+- product name
+- product category
+- price
+- color
+- style code
+- available sizes
+- size and fit guidance
+- material and construction details
+- cushioning and comfort details
+- outsole, traction, durability details
+- product details
+- shipping, returns, pickup, and payment information
+- review count, rating, review snippets, and review summaries when present
+
+Interpretation restriction
+A higher similarity between the current page and a GEO-reference rewrite should be interpreted only as suggestive evidence of movement toward GEO-consistent product-page structure. It is not evidence that Nike or any retailer intentionally adopted GEO.

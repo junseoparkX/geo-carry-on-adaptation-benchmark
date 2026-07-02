@@ -1,0 +1,115 @@
+Here is the source:
+
+<TARGET DOCUMENT>
+Label: Nike Air Force 1 product page, 2026/current text capture
+Filtering status: Product-specific same-topic text only; navigation/form artifacts, duplicate repeated text, and low-information UI labels were excluded.
+
+Product identity
+Product name: Nike Air Force 1 '07
+Product category: Men's Shoes
+Price: $115
+Color shown: White/White
+Style code: CW2288-111
+
+Available sizes
+M 5 / W 6.5
+M 5.5 / W 7
+M 6 / W 7.5
+M 6.5 / W 8
+M 7 / W 8.5
+M 7.5 / W 9
+M 8 / W 9.5
+M 8.5 / W 10
+M 9 / W 10.5
+M 9.5 / W 11
+M 10 / W 11.5
+M 10.5 / W 12
+M 11 / W 12.5
+M 11.5 / W 13
+M 12 / W 13.5
+M 12.5 / W 14
+M 13 / W 14.5
+M 14 / W 15.5
+M 15 / W 16.5
+M 16 / W 17.5
+M 17 / W 18.5
+M 18 / W 19.5
+
+Size and fit
+Fits large; Nike recommends ordering a half size down.
+Size Guide is available.
+
+Payment information
+From $20/month, or 4 payments at 0% interest with Klarna.
+Check purchase power.
+
+Shipping and pickup
+Shipping options are shown at checkout.
+Free Pickup is available.
+Find a Store is available.
+Free standard shipping on orders $50+ and free 60-day returns for Nike Members.
+Return policy exclusions apply.
+Pick-up available at select Nike Stores.
+
+Product description
+Comfortable, durable and timeless—it’s number one for a reason. The classic '80s construction pairs smooth leather with bold details for style that tracks whether you're on court or on the go.
+
+Benefits
+Leather upper with perforated toe box is breathable and comfortable.
+Originally designed for performance hoops, Nike Air cushioning adds lightweight, all-day comfort.
+Rubber outsole with heritage hoops pivot circles delivers traction and durability.
+
+Product details
+Padded collar
+Foam midsole
+Color shown: White/White
+Style code: CW2288-111
+
+Reviews and shopper feedback
+Reviews: 5595
+
+What Reviewers Say:
+These shoes are praised for comfort and versatility, pairing effortlessly with nearly any outfit.
+Fit runs large; sizing down half a size is commonly recommended.
+The classic design remains timeless and durable.
+Some reviewers note that creasing occurs easily and recent quality may vary.
+Break-in is typically quick.
+The shoes work well for casual, everyday wear.
+
+AI-generated summary: Present in source.
+
+</TARGET DOCUMENT>
+
+You are given a current e-commerce product page as a source. Do not rewrite the page into promotional copy. Instead, extract and reorganize only the product-specific information that is explicitly present in the source into a fixed section schema.
+
+This extraction is for research purposes. The goal is to create a section-aligned current-page representation that can be compared with a historical GEO-reference rewrite using section-level similarity.
+
+Important constraints:
+- Use only facts that appear in the source.
+- Do not invent product facts.
+- Do not add unsupported claims.
+- Do not add unsupported comparisons with other products.
+- Do not exaggerate.
+- Keep all review, rating, price, color, size, style code, shipping, return, pickup, and payment information accurate to the source.
+- If a detail is not present in the source, do not add it.
+- Use the exact section headings provided below.
+- Keep the section headings exactly the same, even if the source does not contain information for that section.
+- If a section is not supported by the source, write exactly: Not present in source.
+- Do not create additional section headings beyond the required section headings.
+
+Required output format:
+Use exactly these section headings in exactly this order:
+
+Product identity
+Available sizes
+Size and fit
+Payment information
+Shipping and pickup
+Product description
+Benefits
+Product details
+Reviews and shopper feedback
+AI-generated summary
+Short shopper-focused summary
+
+Now extract the current product page into a section-aligned e-commerce product-page representation using only the facts present in the source. After generating the output, save the final result as a downloadable .txt file with a clear and descriptive filename based on the product name, year, and output type.

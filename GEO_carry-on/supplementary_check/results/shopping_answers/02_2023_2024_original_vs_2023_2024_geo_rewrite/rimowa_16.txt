@@ -1,0 +1,58 @@
+Question 16:
+Answer:
+The products that clearly meet the strict checklist are Away The Carry-On and July Carry On. Away is marketed as “The Carry-On,” is sized to fit overhead bins, has a lightweight durable hard shell, 360° smooth-gliding wheels, a TSA-approved combination lock using a Travel Sentry lock, and 39.8 L capacity. [Away] July is marketed as a Carry On designed for maximum cabin allowance, has a 42 L capacity, an aerospace-grade German polycarbonate shell, SilentMove 360° spinner wheels, and an integrated TSA lock. [July]
+
+Be cautious about RIMOWA if the checklist requires the product page to use exact carry-on and spinner-wheel language. The page presents it as “Essential Lite Cabin,” lists an outside polycarbonate material, TSA-approved locks, Multiwheel® steering, and 10.1 gallons of volume, which is about 38 L, but it does not explicitly call the wheels “spinner wheels” or state a carry-on airline-fit claim in the provided text. [RIMOWA]
+
+Be cautious about Briggs & Riley for this checklist because it is clearly marketed as a carry-on expandable spinner, has a TSA-approved and Travel Sentry-approved lock, spinner wheels, and 37-48 L capacity, but the material is ballistic nylon fabric rather than a hard shell. [Briggs & Riley]
+
+Be cautious about Hartmann because it is clearly a hardside carry-on with 100% polycarbonate, double spinner wheels, and a TSA lock, but the provided page does not list capacity in liters or cubic inches, so the “at least about 37 L” capacity requirement cannot be confirmed from the product-page text. [Hartmann]
+
+Question 17:
+Answer:
+On the raw capacity-to-weight numbers, RIMOWA appears to offer the best packing-space-per-pound tradeoff: it lists 10.1 gallons of volume, about 38 L, at only 4.9 lb, while still including TSA-approved locks, a zipped mesh divider, a zipped interior pocket, a Multiwheel® system, and a three-stage telescopic handle. [RIMOWA]
+
+Among the carry-ons that most clearly satisfy the hard-shell carry-on checklist in the product-page language, July looks like the strongest capacity-to-weight choice. It provides 42 L at 7.4 lb, plus an integrated TSA lock, SilentMove 360° spinner wheels, a Y-Strap compression system, a hidden laundry bag, a polycarbonate shell, and an ejectable USB-C battery. [July]
+
+Away is a close, safer mainstream alternative because it gives 39.8 L at 7.5 lb with a hard shell, 360° wheels, TSA-approved Travel Sentry lock, interior compression, mesh pockets, a hanging pocket, and laundry bag. [Away] Briggs & Riley offers the largest possible stated capacity range at 37-48 L and strong organization, but it weighs 10 lb, so its capacity-to-weight tradeoff is less efficient. [Briggs & Riley] Hartmann lists 7.3 lb and many useful features, but because the product page does not state capacity, it cannot be fairly ranked for capacity-to-weight. [Hartmann]
+
+Question 18:
+Answer:
+The safest default choice for a first serious carry-on is Away The Carry-On. It has a moderate stated price of $275, a 4.7 rating with 4,917 reviews, free shipping and free returns, 100-day returns and exchanges for unused items, a limited warranty, a 39.8 L capacity, hard-shell construction, 360° wheels, a TSA-approved Travel Sentry lock, compression, pockets, and clear overhead-bin language. [Away]
+
+For overpackers, Briggs & Riley is the best match if a soft-sided bag is acceptable because its CX® system expands from 37 L to 48 L and then compresses back down, while the page also highlights garment panels, a built-in garment folder, mesh-lid zip pockets, and flat packing from the Outsider® handle. [Briggs & Riley] July is also good for overpackers who want a hard shell because it lists 42 L of capacity and a Y-Strap compression system. [July]
+
+For budget shoppers, Away is the best supported pick among pages with stated prices because it is listed at $275, below Hartmann at $370, Briggs & Riley at $699, and RIMOWA at $700. [Away] [Hartmann] [Briggs & Riley] [RIMOWA] The July page provided does not include a price, so it cannot be fairly judged for budget value from the supplied text. [July]
+
+For frequent flyers, Briggs & Riley is a strong match because the page emphasizes durable ballistic nylon, 360º shock-absorbing spinner wheels, self-repairing YKK® zippers, impact-resistant corner guards, multiple grab handles, a SmartLink™ strap, and a “simple as that” lifetime repair guarantee with no proof of purchase needed. [Briggs & Riley]
+
+For tech-heavy travelers, July is the clearest match because it includes an ejectable battery with USB-C, says the battery is approved for flying across all major airlines, and describes standard USB and USB-C docks for charging a phone or laptop. [July] Hartmann is a lighter-tech alternative because it has an integrated USB port, but the page says the battery is not included. [Hartmann]
+
+For style-focused travelers, Hartmann is the best match because the page emphasizes a distinctive hardside carry-on, bronze color, metallic film, signature Hartmann print, sophisticated colors, and an iconic leather-wrapped top carry handle. [Hartmann] RIMOWA is a good minimalist-premium match because it is very light at 4.9 lb and includes a lifetime guarantee, but its page is more restrained on style language. [RIMOWA]
+
+Question 19:
+Answer:
+I would not recommend RIMOWA for budget-focused shoppers because the page lists the Essential Lite Cabin at $700, which is the highest stated price among the provided pages tied with Briggs & Riley at $699. [RIMOWA] [Briggs & Riley]
+
+I would not recommend Away for shoppers who know they need maximum packing room for longer trips because the page calls it Away’s smallest suitcase, describes it as perfect for a quick trip, and lists a 5-7 outfit fit. [Away]
+
+I would not recommend Briggs & Riley for shoppers who specifically want a hard-shell carry-on because the page lists the material as ballistic nylon fabric, even though it is otherwise a carry-on expandable spinner with a large capacity range and lock. [Briggs & Riley]
+
+I would not recommend Hartmann for shoppers who need a capacity-confirmed comparison before buying because the product page provides dimensions and weight but does not state capacity. [Hartmann] It is also a caution for travelers who often overstuff, because the page warns that carry-on allowances vary by airline and that an overstuffed bag may not be accepted. [Hartmann]
+
+I would not recommend July for shoppers who need an immediately available, non-preorder purchase based on the provided page, because the selected Carry On is marked “LIMITED EDITION” and “PREORDER.” [July] I would also be cautious for shoppers who do not want power-bank features, because the selected Original version includes a power bank, while the page separately notes an Essential version with no power bank. [July]
+
+Question 20:
+Answer:
+Away provides one of the clearest product pages for comparison because it gives price, review rating and review count, shipping and return signals, hard-shell material, wheels, lock type, interior organization, capacity, weight, exterior and interior measurements, airline-fit language, warranty language, and a buyer caveat about personalized items not being returnable or exchangeable. [Away]
+
+Briggs & Riley is also very complete for comparison because it gives price, carry-on positioning, expansion and compression details, spinner-wheel details, lock details, exterior and interior dimensions, capacity range, weight, material, organization features, tech storage, repair guarantee, and a specific Travel Sentry-approved lock explanation. [Briggs & Riley]
+
+July is strong on travel-use language and feature details because it lists 42 L capacity, 7.4 lb weight, external and internal dimensions, carry-on approval language for Australian and International standards, TSA lock, power bank, USB-C, compression, laundry bag, SilentMove 360° spinner wheels, shell material, zippers, warranty, and returns. [July] However, the provided July text does not include a price and the selected item is marked preorder, which makes price and availability comparison harder. [July]
+
+Hartmann is helpful on concrete dimensions, weight, hardside material, spinner wheels, TSA lock, expandability, USB port, warranty, and a useful buyer caveat about airline allowances and overstuffing. [Hartmann] However, it is harder to compare because it does not provide a stated capacity, and the USB feature is less complete because the battery is not included. [Hartmann]
+
+RIMOWA gives useful core specs such as dimensions, weight, volume, material, TSA-approved locks, wheel system, handle, organization, shipping, returns, and lifetime guarantee. [RIMOWA] However, it is less comparison-friendly than Away, Briggs & Riley, or July because the volume is given in gallons rather than liters, the page does not provide review or rating information in the supplied text, and the travel-fit language is less explicit than pages that say “carry-on,” “overhead,” or “approved to fit as carry-on.” [RIMOWA]
+
+Overall shopper takeaway:
+For a strict hard-shell carry-on checklist, choose Away for the safest mainstream default or July for more capacity and tech features. [Away] [July] Choose RIMOWA if the highest capacity-to-weight ratio and a premium lightweight build matter most, but be aware that the page is less explicit on carry-on and spinner wording. [RIMOWA] Choose Briggs & Riley for frequent-flyer durability, expansion, and garment organization if a soft-sided suitcase is acceptable. [Briggs & Riley] Choose Hartmann mainly for style and garment-friendly packing, but be cautious if you need a stated capacity or worry about overstuffing. [Hartmann]

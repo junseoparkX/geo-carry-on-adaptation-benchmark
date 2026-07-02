@@ -1,0 +1,7 @@
+comparison,comparison_label,brand_group,mean_advantage,min_advantage,max_advantage,n_products,comparison_order,group_order
+current_over_old,Current over old,Newer / DTC,0.0259939612586625,0.0059980497957306,0.0459898727215944,2,0,0
+current_over_old,Current over old,Legacy / premium,0.0036862434864330987,-0.0782265628004361,0.0611255466784838,3,0,1
+geo_over_old,GEO over old,Newer / DTC,0.0399336512462206,0.0248661962503463,0.0550011062420949,2,1,0
+geo_over_old,GEO over old,Legacy / premium,0.017687255951718567,-0.0143918583152359,0.0647469667420037,3,1,1
+geo_over_current,GEO over current,Newer / DTC,0.056239484887456,0.0085493661276045,0.1039296036473075,2,2,0
+geo_over_current,GEO over current,Legacy / premium,-0.019491606750869497,-0.0857253082095958,0.0680703633840764,3,2,1

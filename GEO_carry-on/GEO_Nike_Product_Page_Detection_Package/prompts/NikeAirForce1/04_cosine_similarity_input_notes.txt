@@ -1,0 +1,23 @@
+Cosine Similarity Input Notes
+
+Recommended similarity comparison
+Use the filtered_text files and generated GEO-reference output, not the raw original_text files.
+
+Suggested files:
+- filtered_text/2023_Nike_Air_Force_1_filtered_product_specific.txt
+- filtered_text/2026_Nike_Air_Force_1_filtered_product_specific.txt
+- output/2023_Nike_Air_Force_1_GEO_reference_rewrite_output.txt
+
+After generating the 2023 GEO-reference rewrite, compute:
+
+Similarity A = cosine_similarity(2026 filtered current page, 2023 filtered original page)
+
+Similarity B = cosine_similarity(2026 filtered current page, 2023 GEO-reference rewrite output)
+
+GEO-directional similarity shift = Similarity B - Similarity A
+
+Interpretation
+If the shift is positive, the current page is closer to the GEO-consistent reference rewrite than to the historical filtered original. This is only suggestive evidence of movement toward GEO-consistent e-commerce page structure, not proof of intentional GEO adoption.
+
+Recommended additional check
+Also use the difference-only comparison prompt to identify feature-level changes, because cosine similarity alone can miss small but meaningful additions such as payment support, review summaries, or AI-generated review summaries.
